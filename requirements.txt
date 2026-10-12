@@ -1,0 +1,7 @@
+Django==5.2.18
+psycopg[binary]==3.3.6
+Pillow==12.3.0
+django-modeltranslation==0.20.6
+django-ckeditor-5==0.2.20
+python-dotenv==1.2.4
+gunicorn==26.2.0

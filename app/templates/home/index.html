@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>Web Kyrgyzstan</h1>
+  <p>{% translate "The site is under construction." %}</p>
+
+  <nav aria-label="{% translate 'Language' %}">
+    {% get_available_languages as languages %}
+    {% for code, name in languages %}
+      {% language code %}<a href="{% url 'base:home' %}" hreflang="{{ code }}" lang="{{ code }}">{{ name }}</a>{% endlanguage %}
+    {% endfor %}
+  </nav>
+{% endblock %}

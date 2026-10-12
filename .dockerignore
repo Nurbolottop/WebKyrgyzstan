@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.*
+.envtest
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+volumes/
+app/media/
+app/staticfiles/
+README.md
