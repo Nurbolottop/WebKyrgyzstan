@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'apps.base.middleware.AdminLocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -159,6 +160,9 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_LANGUAGES = ('ky', 'ru', 'en')
 MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('ru', 'ky', 'en')}
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'ru'
+MODELTRANSLATION_CUSTOM_FIELDS = ('CKEditor5Field',)
+# jQuery UI для вкладок языков в админке — локальная копия вместо внешнего CDN
+JQUERY_UI_URL = 'vendor/jquery-ui/jquery-ui.min.js'
 
 # =============================================================================
 # STATIC & MEDIA FILES (СТАТИЧЕСКИЕ И МЕДИА ФАЙЛЫ)
