@@ -13,10 +13,12 @@ from django.db import transaction
 from django.utils import translation
 
 from apps.articles.models import Article, Category
-from apps.base.content import geography, modern, more, starter, translations
+from decimal import Decimal
+
+from apps.base.content import geography, modern, more, places_extra, starter, translations
 from apps.base.models import Fact, Section, SiteSettings
 from apps.discover.models import Place, Region
-from apps.learn.models import Answer, Puzzle, Question, Quiz, Word, WordTopic
+from apps.learn.models import Answer, Game, Puzzle, Question, Quiz, Word, WordTopic
 from apps.practice.models import Activity
 
 LANGS = ('ky', 'ru', 'en')
@@ -45,6 +47,7 @@ class Command(BaseCommand):
         with translation.override('ru'):
             self.translate_starter()
             self.describe_geography()
+            self.add_places()
             self.add_articles(more.ARTICLES + modern.ARTICLES)
             self.add_quizzes()
             self.add_words()
@@ -82,6 +85,15 @@ class Command(BaseCommand):
                 step.save()
             self.stdout.write(f'  перевод практики {slug}')
 
+        for slug, items in translations.GAME_ITEMS.items():
+            game = Game.objects.filter(slug=slug).first()
+            if not game:
+                continue
+            for item, data in zip(game.items.order_by('order', 'pk'), items):
+                for i, field in enumerate(('title', 'text', 'explanation')):
+                    fill(item, field, {lang: data[lang][i] for lang in ('ky', 'en')})
+                item.save()
+
         for source, data in zip(starter.PUZZLES, translations.PUZZLES):
             puzzle = Puzzle.objects.filter(prompt_ru=source['prompt']).first()
             if not puzzle:
@@ -114,6 +126,19 @@ class Command(BaseCommand):
             place.save()
             self.add_facts(place, data.get('facts', []))
             self.stdout.write(f'  достопримечательность {slug}')
+
+    def add_places(self):
+        for data in places_extra.PLACES:
+            if Place.objects.filter(slug=data['slug']).exists():
+                continue
+            place = Place(slug=data['slug'], region=Region.objects.get(slug=data['region']), kind=data['kind'],
+                          latitude=Decimal(data['lat']), longitude=Decimal(data['lon']),
+                          order=Place.objects.count() + 1)
+            for field in ('title', 'summary', 'body', 'key_value', 'key_label'):
+                fill(place, field, data[field])
+            place.save()
+            self.add_facts(place, data.get('facts', []))
+            self.stdout.write(f'  новая достопримечательность {data["slug"]}')
 
     def add_facts(self, obj, facts):
         if obj.facts.exists():

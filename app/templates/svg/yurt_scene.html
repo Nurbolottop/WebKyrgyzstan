@@ -8,6 +8,13 @@
   <ellipse cx="200" cy="262" rx="170" ry="16" fill="#7fb85a" opacity=".55"/>
   <ellipse cx="200" cy="258" rx="128" ry="9" fill="#5f9f43" opacity=".35"/>
 
+  {# Пунктирный контур будущей юрты — подсказка, что будем собирать #}
+  <g class="yurt-ghost" fill="none" stroke="#8a5a2b" stroke-width="2" stroke-dasharray="6 6" opacity=".35">
+    <path d="M70 176C82 112 138 70 200 66c62 4 118 46 130 110"/>
+    <rect x="70" y="174" width="260" height="84" rx="8"/>
+    <ellipse cx="200" cy="62" rx="26" ry="10"/>
+  </g>
+
   {# 1. Кереге — решётчатые стены #}
   <g class="yurt-layer" data-layer="kerege">
     <rect x="76" y="172" width="248" height="84" rx="6" fill="#f3e3c7"/>

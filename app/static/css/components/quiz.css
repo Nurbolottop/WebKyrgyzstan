@@ -148,3 +148,5 @@
 .yurt-layer--drop { transform: translateY(-40px); }
 .yurt-layer.is-placed { opacity: 1; transform: none; }
 .yurt-scene.is-complete { animation: pop .6s var(--ease); }
+.yurt-ghost { transition: opacity .4s var(--ease); }
+.yurt-scene.is-complete .yurt-ghost { opacity: 0; }

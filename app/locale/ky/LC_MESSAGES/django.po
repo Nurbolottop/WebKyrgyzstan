@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 11:48+0600\n"
+"POT-Creation-Date: 2026-10-13 12:24+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,12 +70,12 @@ msgstr "Орточо"
 msgid "Hard"
 msgstr "Татаал"
 
-#: apps/discover/models.py:13 templates/components/map.html:11
-#: templates/discover/place_detail.html:22
+#: apps/discover/models.py:13 templates/components/map.html:16
+#: templates/components/map.html:36 templates/discover/place_detail.html:22
 msgid "Region"
 msgstr "Облус"
 
-#: apps/discover/models.py:14 templates/components/map.html:12
+#: apps/discover/models.py:14 templates/components/map.html:17
 msgid "City of republican significance"
 msgstr "Республикалык маанидеги шаар"
 
@@ -229,19 +229,27 @@ msgstr "Сүрөт"
 msgid "Close"
 msgstr "Жабуу"
 
-#: templates/components/map.html:8
+#: templates/components/map.html:13
+msgid "Hover over or tap a region or a coloured dot to learn more."
+msgstr "Облуска же түстүү чекитке алып бар же бас — бул жерде ал жөнүндө маалымат чыгат."
+
+#: templates/components/map.html:29
 msgid "Open"
 msgstr "Ачуу"
 
-#: templates/components/map.html:13
-msgid "Landmark"
-msgstr "Кооз жер"
-
-#: templates/components/map.html:16
+#: templates/components/map.html:36
 msgid "Centre"
 msgstr "Борбору"
 
-#: templates/components/map.html:16 templates/discover/index.html:26
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "Area"
+msgstr "Аянты"
+
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "km²"
+msgstr "км²"
+
+#: templates/components/map.html:36 templates/discover/index.html:31
 #: templates/discover/region_detail.html:15
 msgid "Landmarks"
 msgstr "Кооз жерлер"
@@ -322,11 +330,11 @@ msgstr "Картадагы облусту бас же тизмеден танд�
 msgid "Boundaries"
 msgstr "Чек аралар"
 
-#: templates/discover/index.html:27 templates/discover/place_detail.html:26
+#: templates/discover/index.html:32 templates/discover/place_detail.html:26
 msgid "All landmarks"
 msgstr "Бардык кооз жерлер"
 
-#: templates/discover/index.html:38
+#: templates/discover/index.html:43
 msgid "About nature"
 msgstr "Жаратылыш жөнүндө"
 
@@ -372,14 +380,6 @@ msgstr "Дагы окуу"
 msgid "Administrative centre"
 msgstr "Административдик борбору"
 
-#: templates/discover/region_detail.html:35
-msgid "Area"
-msgstr "Аянты"
-
-#: templates/discover/region_detail.html:35
-msgid "km²"
-msgstr "км²"
-
 #: templates/discover/region_detail.html:36
 msgid "Population"
 msgstr "Калкы"
@@ -422,7 +422,7 @@ msgstr "республикалык маанидеги шаар"
 msgid "languages"
 msgstr "тил"
 
-#: templates/home/index.html:44
+#: templates/home/index.html:44 templates/svg/map_kyrgyzstan.html:29
 msgid "Issyk-Kul"
 msgstr "Ысык-Көл"
 
@@ -690,3 +690,19 @@ msgstr "Дагы аракет кыл"
 #: templates/practice/index.html:12
 msgid "See all"
 msgstr "Баарын көрүү"
+
+#: templates/svg/map_kyrgyzstan.html:30
+msgid "Kazakhstan"
+msgstr "Казакстан"
+
+#: templates/svg/map_kyrgyzstan.html:31
+msgid "Uzbekistan"
+msgstr "Өзбекстан"
+
+#: templates/svg/map_kyrgyzstan.html:32
+msgid "Tajikistan"
+msgstr "Тажикстан"
+
+#: templates/svg/map_kyrgyzstan.html:33
+msgid "China"
+msgstr "Кытай"

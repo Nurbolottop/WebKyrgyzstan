@@ -1,17 +1,37 @@
 {% load i18n %}
-{# Интерактивная карта. Ожидает в контексте map из discover.services.map_context #}
+{# Интерактивная карта. Ожидает в контексте map из discover.services.map_context. #}
+{# Карточка с информацией стоит в пустом углу карты (на узких экранах — под картой). #}
 <div class="kg-map" data-module="map">
-  {% include "svg/map_kyrgyzstan.html" %}
-  <div class="kg-map__tip" role="status" aria-live="polite"></div>
-  <div class="kg-map__sheet" aria-live="polite">
-    <div><strong></strong><br><span class="muted"></span></div>
-    <a class="btn btn--section btn--small" href="#">{% translate "Open" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <div class="kg-map__canvas">
+    {% include "svg/map_kyrgyzstan.html" %}
   </div>
-  <div class="kg-map__legend">
-    <span><i style="background:#b9e1dc"></i>{% translate "Region" %}</span>
-    <span><i style="background:var(--red)"></i>{% translate "City of republican significance" %}</span>
-    {% if map.pins %}<span><i style="background:var(--sun);border:2px solid var(--ink)"></i>{% translate "Landmark" %}</span>{% endif %}
-  </div>
+
+  <aside class="kg-map__panel" aria-live="polite">
+    <div class="kg-map__intro">
+      <p class="kg-map__hint">
+        <svg aria-hidden="true"><use href="#i-pin"/></svg>
+        {% translate "Hover over or tap a region or a coloured dot to learn more." %}
+      </p>
+      <ul class="kg-map__legend">
+        <li><i class="kg-map__swatch kg-map__swatch--region"></i>{% translate "Region" %}</li>
+        <li><i class="kg-map__swatch kg-map__swatch--city"></i>{% translate "City of republican significance" %}</li>
+        {% for value, label in map.pin_kinds %}<li><i class="kg-map__swatch kg-map__swatch--pin" data-kind="{{ value }}"></i>{{ label }}</li>{% endfor %}
+      </ul>
+    </div>
+
+    <article class="kg-map__card" hidden>
+      <div class="kg-map__card-media"><img src="" alt="" width="480" height="300" loading="lazy"></div>
+      <div class="kg-map__card-body">
+        <span class="kg-map__card-kind"></span>
+        <h3 class="kg-map__card-title"></h3>
+        <p class="kg-map__card-text"></p>
+        <dl class="kg-map__card-stats"></dl>
+        <a class="btn btn--section btn--small kg-map__card-link" href="#">{% translate "Open" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </article>
+  </aside>
+
   {{ map.tips|json_script:"map-tips" }}
-  <script type="application/json" id="map-i18n">{"capital": "{{ _("Centre")|escapejs }}", "places": "{{ _("Landmarks")|escapejs }}"}</script>
+  {{ map.pin_tips|json_script:"map-pins" }}
+  <script type="application/json" id="map-i18n">{"capital": "{{ _('Centre')|escapejs }}", "area": "{{ _('Area')|escapejs }}", "km2": "{{ _('km²')|escapejs }}", "places": "{{ _('Landmarks')|escapejs }}", "region": "{{ _('Region')|escapejs }}"}</script>
 </div>

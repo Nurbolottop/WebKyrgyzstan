@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n seo_tags %}
+{% load i18n seo_tags site_tags %}
 {% block seo %}{% seo_meta section %}{% endblock %}
 {% block content %}
 {% include "components/page_hero.html" with title=section.title lead=section.description image=section.cover image_alt=section.cover_alt credit=section.cover_credit %}
@@ -14,7 +14,12 @@
     <p class="kg-map__credit">{% translate "Boundaries" %}: geoBoundaries, © OpenStreetMap contributors (ODbL)</p>
     <ul class="region-list" style="margin-top: 32px">
       {% for region in map.regions %}
-        <li><a href="{{ region.get_absolute_url }}" data-region-link="{{ region.map_id }}">{{ region.title }}{% if region.capital %}<small>{{ region.capital }}</small>{% endif %}</a></li>
+        <li>
+          <a href="{{ region.get_absolute_url }}" data-region-link="{{ region.map_id }}">
+            <span class="region-list__thumb">{% if region.cover %}{% picture region.cover "" "56px" %}{% endif %}</span>
+            <span class="region-list__name">{{ region.title }}{% if region.capital %}<small>{{ region.capital }}</small>{% elif region.kind == "city" %}<small>{{ region.get_kind_display }}</small>{% endif %}</span>
+          </a>
+        </li>
       {% endfor %}
     </ul>
   </div>

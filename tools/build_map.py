@@ -1,4 +1,4 @@
-"""Строит SVG-карту Кыргызстана из geoBoundaries ADM1 (OSM, ODbL) + контуров Бишкека и Оша (OSM)."""
+"""Строит SVG-карту Кыргызстана: области — geoBoundaries ADM1 (OSM, ODbL); Бишкек, Ош и озёра — OpenStreetMap (ODbL)."""
 import json, math, sys
 # python3 tools/build_map.py tools/geo app/templates/svg/map_kyrgyzstan.html app/apps/discover/map_projection.py app/static/img/sections/discover.svg
 geo, out_tpl, out_py = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -71,7 +71,91 @@ for slug in order:
         + (f'<circle class="kg-map__city-dot" cx="{cx:.1f}" cy="{cy:.1f}" r="9"/>' if kind == 'city' else '')
         + '</a>'
     )
-lines.append('  {% if map.pins %}<g class="kg-map__pins" aria-hidden="true">{% for pin in map.pins %}<circle class="kg-map__pin" cx="{{ pin.x }}" cy="{{ pin.y }}" r="6"><title>{{ pin.title }}</title></circle>{% endfor %}</g>{% endif %}')
+# --- Озёра ---------------------------------------------------------------
+LAKES = ['issyk-kul', 'son-kul', 'chatyr-kul', 'toktogul-reservoir']
+lake_shapes = {}
+for name in LAKES:
+    for f in json.load(open(f'{geo}/lake-{name}.geojson'))['features']:
+        if f['properties'].get('category') in ('water', 'natural') and f['geometry']['type'] in ('Polygon', 'MultiPolygon'):
+            lake_shapes[name] = f['geometry']
+            break
+
+def outer(g):
+    polys = g['coordinates'] if g['type'] == 'MultiPolygon' else [g['coordinates']]
+    best = max((poly[0] for poly in polys), key=len)
+    return [project(*pt) for pt in best]
+
+def simplify(ring, step):
+    out = [ring[0]]
+    for pt in ring[1:]:
+        if math.hypot(pt[0] - out[-1][0], pt[1] - out[-1][1]) >= step:
+            out.append(pt)
+    return out
+
+def inside(x, y, ring):
+    hit = False
+    j = len(ring) - 1
+    for i in range(len(ring)):
+        xi, yi = ring[i]; xj, yj = ring[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            hit = not hit
+        j = i
+    return hit
+
+def seg_dist(px, py, ax, ay, bx, by):
+    dx, dy = bx - ax, by - ay
+    t = max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy or 1)))
+    return math.hypot(px - ax - t * dx, py - ay - t * dy)
+
+def pole(ring, holes=(), step=5, aspect=3.0):
+    """Точка внутри контура, дальше всего от границ (с учётом вытянутости подписи)."""
+    ring = simplify(ring, 3)
+    holes = [simplify(h, 3) for h in holes]
+    xs = [p[0] for p in ring]; ys = [p[1] for p in ring]
+    edges = [(ring[i - 1], ring[i]) for i in range(len(ring))] + [(h[i - 1], h[i]) for h in holes for i in range(len(h))]
+    best, best_d = None, -1
+    y = min(ys)
+    while y < max(ys):
+        x = min(xs)
+        while x < max(xs):
+            if inside(x, y, ring) and not any(inside(x, y, h) for h in holes):
+                # Подпись шире, чем выше: вертикальное расстояние «стоит» дороже
+                d = min(min(seg_dist(x, y, *a, *b) for a, b in edges),
+                        min(abs(a[1] - y) * aspect for a, b in edges if min(a[0], b[0]) - 40 <= x <= max(a[0], b[0]) + 40) if edges else 1e9)
+                if d > best_d:
+                    best, best_d = (x, y), d
+            x += step
+        y += step
+    return best
+
+lines.append('  <g class="kg-map__lakes" aria-hidden="true">')
+for name, g in lake_shapes.items():
+    lines.append(f'    <path class="kg-map__lake" data-lake="{name}" d="{path(g, 0.8)}"/>')
+lines.append('  </g>')
+
+# --- Подписи областей и городов ---------------------------------------------
+lake_rings = [outer(g) for g in lake_shapes.values()]
+labels = ['  <g class="kg-map__labels" aria-hidden="true">']
+for slug in ADM1.values():
+    x, y = pole(outer(shapes[slug]), holes=lake_rings)
+    labels.append(f'    <text class="kg-map__label" x="{x:.0f}" y="{y + 5:.0f}">{{{{ map.labels.{slug.replace("-", "_")} }}}}</text>')
+for slug in ('bishkek', 'osh-city'):
+    cx, cy = centroid(shapes[slug])
+    labels.append(f'    <text class="kg-map__label kg-map__label--city" x="{cx + 16:.0f}" y="{cy + 5:.0f}">{{{{ map.labels.{slug.replace("-", "_")} }}}}</text>')
+ix, iy = pole(outer(lake_shapes['issyk-kul']), step=3, aspect=4)
+labels.append(f'    <text class="kg-map__label kg-map__label--lake" x="{ix:.0f}" y="{iy + 5:.0f}">{{% translate "Issyk-Kul" %}}</text>')
+
+# Соседние страны — проверяем, что подпись не попала внутрь Кыргызстана
+all_rings = [outer(shapes[s]) for s in ADM1.values()]
+NEIGHBOURS = [('Kazakhstan', 250, 40), ('Uzbekistan', 60, 300), ('Tajikistan', 230, 486), ('China', 600, 470)]
+for name, x, y in NEIGHBOURS:
+    if any(inside(x, y, r) for r in all_rings):
+        print('WARNING: подпись страны внутри Кыргызстана:', name)
+    labels.append(f'    <text class="kg-map__country" x="{x}" y="{y}">{{% translate "{name}" %}}</text>')
+labels.append('  </g>')
+lines.extend(labels)
+
+lines.append('  {% if map.pins %}<g class="kg-map__pins">{% for pin in map.pins %}<a class="kg-map__pin" href="{{ pin.url }}" data-kind="{{ pin.kind }}" data-place="{{ pin.slug }}" aria-label="{{ pin.title }}"><circle class="kg-map__pin-halo" cx="{{ pin.x }}" cy="{{ pin.y }}" r="16"/><circle class="kg-map__pin-dot" cx="{{ pin.x }}" cy="{{ pin.y }}" r="7"/></a>{% endfor %}</g>{% endif %}')
 lines.append('</svg>')
 open(out_tpl, 'w').write('\n'.join(lines) + '\n')
 

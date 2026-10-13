@@ -76,3 +76,13 @@ class SeedMoreTests(TestCase):
 
         with translation.override('en'):
             self.assertIn('Issyk-Kul', Article.objects.get(slug='why-issyk-kul-does-not-freeze').body)
+
+
+class FetchPhotosHelpersTests(TestCase):
+    def test_extension_ignores_query_string(self):
+        from apps.base.management.commands.fetch_photos import extension
+
+        url = 'https://upload.wikimedia.org/a/b/1600px-Lake.jpg?utm_source=commons.wikimedia.org&utm_campaign=x'
+        self.assertEqual(extension(url), '.jpg')
+        self.assertEqual(extension('https://example.org/file.PNG'), '.png')
+        self.assertEqual(extension('https://example.org/thumbnail'), '.jpg')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 11:48+0600\n"
+"POT-Creation-Date: 2026-10-13 12:24+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,12 +72,12 @@ msgstr "Средне"
 msgid "Hard"
 msgstr "Сложно"
 
-#: apps/discover/models.py:13 templates/components/map.html:11
-#: templates/discover/place_detail.html:22
+#: apps/discover/models.py:13 templates/components/map.html:16
+#: templates/components/map.html:36 templates/discover/place_detail.html:22
 msgid "Region"
 msgstr "Область"
 
-#: apps/discover/models.py:14 templates/components/map.html:12
+#: apps/discover/models.py:14 templates/components/map.html:17
 msgid "City of republican significance"
 msgstr "Город республиканского значения"
 
@@ -231,19 +231,27 @@ msgstr "Фото"
 msgid "Close"
 msgstr "Закрыть"
 
-#: templates/components/map.html:8
+#: templates/components/map.html:13
+msgid "Hover over or tap a region or a coloured dot to learn more."
+msgstr "Наведи или нажми на область или цветную точку — здесь появится рассказ о ней."
+
+#: templates/components/map.html:29
 msgid "Open"
 msgstr "Открыть"
 
-#: templates/components/map.html:13
-msgid "Landmark"
-msgstr "Достопримечательность"
-
-#: templates/components/map.html:16
+#: templates/components/map.html:36
 msgid "Centre"
 msgstr "Центр"
 
-#: templates/components/map.html:16 templates/discover/index.html:26
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "Area"
+msgstr "Площадь"
+
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "km²"
+msgstr "км²"
+
+#: templates/components/map.html:36 templates/discover/index.html:31
 #: templates/discover/region_detail.html:15
 msgid "Landmarks"
 msgstr "Достопримечательности"
@@ -324,11 +332,11 @@ msgstr "Нажми на область на карте или выбери её 
 msgid "Boundaries"
 msgstr "Границы"
 
-#: templates/discover/index.html:27 templates/discover/place_detail.html:26
+#: templates/discover/index.html:32 templates/discover/place_detail.html:26
 msgid "All landmarks"
 msgstr "Все достопримечательности"
 
-#: templates/discover/index.html:38
+#: templates/discover/index.html:43
 msgid "About nature"
 msgstr "О природе"
 
@@ -374,14 +382,6 @@ msgstr "Читать ещё"
 msgid "Administrative centre"
 msgstr "Административный центр"
 
-#: templates/discover/region_detail.html:35
-msgid "Area"
-msgstr "Площадь"
-
-#: templates/discover/region_detail.html:35
-msgid "km²"
-msgstr "км²"
-
 #: templates/discover/region_detail.html:36
 msgid "Population"
 msgstr "Население"
@@ -424,7 +424,7 @@ msgstr "города республиканского значения"
 msgid "languages"
 msgstr "языка"
 
-#: templates/home/index.html:44
+#: templates/home/index.html:44 templates/svg/map_kyrgyzstan.html:29
 msgid "Issyk-Kul"
 msgstr "Иссык-Куль"
 
@@ -693,3 +693,19 @@ msgstr "Попробуй ещё"
 #: templates/practice/index.html:12
 msgid "See all"
 msgstr "Смотреть все"
+
+#: templates/svg/map_kyrgyzstan.html:30
+msgid "Kazakhstan"
+msgstr "Казахстан"
+
+#: templates/svg/map_kyrgyzstan.html:31
+msgid "Uzbekistan"
+msgstr "Узбекистан"
+
+#: templates/svg/map_kyrgyzstan.html:32
+msgid "Tajikistan"
+msgstr "Таджикистан"
+
+#: templates/svg/map_kyrgyzstan.html:33
+msgid "China"
+msgstr "Китай"

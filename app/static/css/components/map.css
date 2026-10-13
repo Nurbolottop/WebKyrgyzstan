@@ -41,44 +41,127 @@
 .kg-map__region--city:hover path,
 .kg-map__region--city:focus-visible path { fill: var(--ink); filter: none; }
 
-.kg-map__pin { fill: var(--sun); stroke: var(--ink); stroke-width: 2; pointer-events: none; }
-
-.kg-map__tip {
-  position: absolute;
-  z-index: 5;
-  min-width: 180px;
-  max-width: 260px;
-  padding: 12px 16px;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: #fff;
-  box-shadow: var(--shadow-l);
-  font-size: .9rem;
-  line-height: 1.4;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, calc(-100% - 14px)) scale(.96);
-  transition: opacity var(--fast) var(--ease), transform var(--fast) var(--ease);
+/* Озёра, подписи и соседние страны */
+.kg-map__lakes, .kg-map__labels { pointer-events: none; }
+.kg-map__lake { fill: #4fa9cf; stroke: #fff; stroke-width: 1.5; }
+.kg-map__label {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--ink);
+  opacity: .72;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, .85);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  transition: opacity var(--fast) var(--ease);
 }
-.kg-map__tip.is-visible { opacity: 1; transform: translate(-50%, calc(-100% - 18px)); }
-.kg-map__tip strong { display: block; font-family: var(--display); font-size: 1rem; }
-.kg-map__tip span { color: #b9c0d3; }
+.kg-map__label--city { text-anchor: start; font-size: 14px; fill: var(--red-ink); opacity: .9; }
+.kg-map__label--lake { font-size: 13px; font-style: italic; fill: #fff; stroke: #2b7fa3; stroke-width: 3px; opacity: .95; }
+.kg-map__country {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: var(--muted);
+  opacity: .55;
+}
+/* Когда выбрана область, её подпись читается на тёмной заливке */
+.kg-map:has(.kg-map__region.is-active) .kg-map__label { opacity: .45; }
+@container (max-width: 640px) {
+  .kg-map__label, .kg-map__country { display: none; }
+}
 
-/* Нижняя карточка на сенсорных экранах */
-.kg-map__sheet {
-  display: none;
-  margin-top: 16px;
-  padding: 18px 20px;
+/* Точки достопримечательностей — ссылки */
+.kg-map__pin { cursor: pointer; }
+[data-kind="lake"] { --pin: #2e9bd6; }
+[data-kind="mountain"] { --pin: #dfe7f0; }
+[data-kind="historic"] { --pin: #e07a3f; }
+[data-kind="nature"] { --pin: #4caf50; }
+[data-kind="city"] { --pin: var(--sun); }
+.kg-map__pin:focus-visible { outline: none; }
+.kg-map__pin-halo { fill: var(--pin, var(--sun)); opacity: 0; transition: opacity var(--fast) var(--ease); }
+.kg-map__pin-dot {
+  fill: var(--pin, var(--sun));
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  transition: r var(--fast) var(--ease), fill var(--fast) var(--ease);
+}
+.kg-map__pin:hover .kg-map__pin-halo,
+.kg-map__pin:focus-visible .kg-map__pin-halo,
+.kg-map__pin.is-active .kg-map__pin-halo { opacity: .35; }
+.kg-map__pin:hover .kg-map__pin-dot,
+.kg-map__pin:focus-visible .kg-map__pin-dot,
+.kg-map__pin.is-active .kg-map__pin-dot { r: 10; fill: #fff; }
+
+/* Карточка: в свободном правом нижнем углу карты (там, где за границей пусто) */
+.kg-map { container-type: inline-size; }
+.kg-map__panel { margin-top: 16px; }
+
+@container (min-width: 960px) {
+  .kg-map__panel {
+    position: absolute;
+    right: 0;
+    top: 56%;
+    width: 30%;
+    margin: 0;
+  }
+}
+
+.kg-map__intro { display: grid; gap: 14px; padding: 18px 20px; border-radius: var(--radius-l); background: rgba(255, 255, 255, .7); }
+.kg-map__intro[hidden] { display: none; }
+.kg-map__hint { display: flex; gap: 10px; font-size: .95rem; line-height: 1.45; color: var(--ink-2); }
+.kg-map__hint svg { flex-shrink: 0; width: 22px; height: 22px; color: var(--discover); }
+
+.kg-map__legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0; padding: 0; list-style: none; font-size: .85rem; color: var(--muted); }
+.kg-map__legend li { display: inline-flex; align-items: center; gap: 8px; }
+.kg-map__swatch { width: 14px; height: 14px; border-radius: 50%; }
+.kg-map__swatch--region { background: #b9e1dc; }
+.kg-map__swatch--city { background: var(--red); }
+.kg-map__swatch--pin { background: var(--pin, var(--sun)); box-shadow: inset 0 0 0 2px var(--ink); }
+
+.kg-map__card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 16px;
   border-radius: var(--radius-l);
   background: var(--surface);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-l);
 }
-.kg-map__sheet.is-visible { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.kg-map__sheet strong { font-family: var(--display); font-size: 1.15rem; }
+.kg-map__card[hidden] { display: none; }
+.kg-map__card.is-entering { animation: card-in .28s var(--ease); }
+@keyframes card-in { from { opacity: 0; transform: translateY(8px); } }
+.kg-map__card-media { overflow: hidden; width: 96px; height: 96px; border-radius: var(--radius); background: var(--discover-soft); }
+.kg-map__card-media[hidden] { display: none; }
+.kg-map__card:has(.kg-map__card-media[hidden]) { grid-template-columns: 1fr; }
+.kg-map__card-media img { width: 100%; height: 100%; object-fit: cover; }
+.kg-map__card-body { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.kg-map__card-kind { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--discover); }
+.kg-map__card-title { font-size: 1.15rem; line-height: 1.2; }
+.kg-map__card-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: .9rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.kg-map__card-stats { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 2px 0 4px; font-size: .82rem; }
+.kg-map__card-stats div { display: flex; gap: 4px; }
+.kg-map__card-stats dt { color: var(--muted); }
+.kg-map__card-stats dt::after { content: ':'; }
+.kg-map__card-stats dd { margin: 0; font-weight: 600; }
+.kg-map__card-link { justify-self: start; }
+@container (max-width: 420px) {
+  .kg-map__card { grid-template-columns: 72px 1fr; }
+  .kg-map__card-media { width: 72px; height: 72px; }
+}
 
-.kg-map__legend { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 18px; font-size: .9rem; color: var(--muted); }
-.kg-map__legend span { display: inline-flex; align-items: center; gap: 8px; }
-.kg-map__legend i { width: 14px; height: 14px; border-radius: 50%; }
 .kg-map__credit { margin-top: 10px; font-size: .75rem; color: var(--muted); }
 
 /* Список областей рядом с картой — то же самое для клавиатуры и читалок */
@@ -86,15 +169,25 @@
 .region-list a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 14px 18px;
+  gap: 14px;
+  padding: 10px 14px 10px 10px;
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-s);
   font-weight: 600;
+  line-height: 1.25;
   text-decoration: none;
   transition: transform var(--fast) var(--ease), background-color var(--fast) var(--ease);
 }
 .region-list a:hover, .region-list a.is-active { transform: translateY(-2px); background: var(--discover-soft); }
-.region-list small { font-weight: 400; color: var(--muted); }
+.region-list__thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--discover-soft) url('../../img/sections/discover.svg') center / 80% no-repeat;
+}
+.region-list__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.region-list__name { display: grid; gap: 2px; }
+.region-list small { font-weight: 400; font-size: .85rem; color: var(--muted); }

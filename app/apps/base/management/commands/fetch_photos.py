@@ -69,6 +69,10 @@ PHOTOS = [
     (Article, 'slug', 'glaciers-water-tanks', 'File:Khan Tengri, Southern Inylchek Glacier, Tien Shan — Golden Hour.jpg'),
     (Article, 'slug', 'toguz-korgool', 'File:Toguz kumalak.jpg'),
     (Article, 'slug', 'bishkek-today', 'File:Oak Park in Bishkek.jpg'),
+    (Place, 'slug', 'manas-ordo', 'File:Manas Mausoleum 2024.jpg'),
+    (Place, 'slug', 'aigul-tash', 'File:Гора Айгул.jpg'),
+    (Place, 'slug', 'lenin-peak', 'File:Lenin peak from Sary-mogol.jpg'),
+    (Region, 'slug', 'batken', 'File:Айгул.jpg'),
 ]
 
 
@@ -85,6 +89,12 @@ GALLERY = [
     (Article, 'how-a-yurt-is-built', ['File:Dismantling a Yurt at Lake Tuz-Kol at Kyzyl-Tuu 2.jpg']),
     (Article, 'kok-boru-and-nomad-games', ['File:Kok-boru Cholpon-Ata, Kyrgyzstan 2018.jpg', 'File:The ethnic village, World Nomad Games.jpg']),
 ]
+
+
+def extension(url):
+    """Расширение из пути ссылки: к миниатюрам Commons добавляет ?utm_…-параметры."""
+    suffix = Path(urllib.parse.urlparse(url).path).suffix.lower()
+    return suffix if suffix in ('.jpg', '.jpeg', '.png', '.webp') else '.jpg'
 
 
 def fetch(url):
@@ -140,7 +150,7 @@ class Command(BaseCommand):
 
             content = fetch(url)
             time.sleep(3)
-            obj.cover.save(f'{value}{Path(url).suffix.lower() or ".jpg"}', ContentFile(content), save=False)
+            obj.cover.save(f'{value}{extension(url)}', ContentFile(content), save=False)
             obj.cover_credit = f'{artist[:120]} · {license_name} · Wikimedia Commons'
             for lang in ('ky', 'ru', 'en'):
                 setattr(obj, f'cover_alt_{lang}', getattr(obj, f'title_{lang}') or obj.title_ru)
@@ -169,6 +179,6 @@ class Command(BaseCommand):
                                      credit=f'{artist[:120]} · {license_name} · Wikimedia Commons')
                 for lang in ('ky', 'ru', 'en'):
                     setattr(photo, f'alt_{lang}', getattr(obj, f'title_{lang}') or obj.title_ru)
-                photo.image.save(f'{slug}-{order}{Path(url).suffix.lower() or ".jpg"}', ContentFile(content), save=False)
+                photo.image.save(f'{slug}-{order}{extension(url)}', ContentFile(content), save=False)
                 photo.save()
                 self.stdout.write(self.style.SUCCESS(f'  галерея {obj}: {license_name}, {artist[:40]}'))

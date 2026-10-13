@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 11:48+0600\n"
+"POT-Creation-Date: 2026-10-13 12:24+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,12 +70,12 @@ msgstr ""
 msgid "Hard"
 msgstr ""
 
-#: apps/discover/models.py:13 templates/components/map.html:11
-#: templates/discover/place_detail.html:22
+#: apps/discover/models.py:13 templates/components/map.html:16
+#: templates/components/map.html:36 templates/discover/place_detail.html:22
 msgid "Region"
 msgstr ""
 
-#: apps/discover/models.py:14 templates/components/map.html:12
+#: apps/discover/models.py:14 templates/components/map.html:17
 msgid "City of republican significance"
 msgstr ""
 
@@ -229,19 +229,27 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/components/map.html:8
+#: templates/components/map.html:13
+msgid "Hover over or tap a region or a coloured dot to learn more."
+msgstr ""
+
+#: templates/components/map.html:29
 msgid "Open"
 msgstr ""
 
-#: templates/components/map.html:13
-msgid "Landmark"
-msgstr ""
-
-#: templates/components/map.html:16
+#: templates/components/map.html:36
 msgid "Centre"
 msgstr ""
 
-#: templates/components/map.html:16 templates/discover/index.html:26
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "Area"
+msgstr ""
+
+#: templates/components/map.html:36 templates/discover/region_detail.html:35
+msgid "km²"
+msgstr ""
+
+#: templates/components/map.html:36 templates/discover/index.html:31
 #: templates/discover/region_detail.html:15
 msgid "Landmarks"
 msgstr ""
@@ -322,11 +330,11 @@ msgstr ""
 msgid "Boundaries"
 msgstr ""
 
-#: templates/discover/index.html:27 templates/discover/place_detail.html:26
+#: templates/discover/index.html:32 templates/discover/place_detail.html:26
 msgid "All landmarks"
 msgstr ""
 
-#: templates/discover/index.html:38
+#: templates/discover/index.html:43
 msgid "About nature"
 msgstr ""
 
@@ -372,14 +380,6 @@ msgstr ""
 msgid "Administrative centre"
 msgstr ""
 
-#: templates/discover/region_detail.html:35
-msgid "Area"
-msgstr ""
-
-#: templates/discover/region_detail.html:35
-msgid "km²"
-msgstr ""
-
 #: templates/discover/region_detail.html:36
 msgid "Population"
 msgstr ""
@@ -422,7 +422,7 @@ msgstr ""
 msgid "languages"
 msgstr ""
 
-#: templates/home/index.html:44
+#: templates/home/index.html:44 templates/svg/map_kyrgyzstan.html:29
 msgid "Issyk-Kul"
 msgstr ""
 
@@ -689,4 +689,20 @@ msgstr ""
 
 #: templates/practice/index.html:12
 msgid "See all"
+msgstr ""
+
+#: templates/svg/map_kyrgyzstan.html:30
+msgid "Kazakhstan"
+msgstr ""
+
+#: templates/svg/map_kyrgyzstan.html:31
+msgid "Uzbekistan"
+msgstr ""
+
+#: templates/svg/map_kyrgyzstan.html:32
+msgid "Tajikistan"
+msgstr ""
+
+#: templates/svg/map_kyrgyzstan.html:33
+msgid "China"
 msgstr ""

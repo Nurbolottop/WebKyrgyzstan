@@ -391,3 +391,25 @@ PUZZLES = [
             'hint': 'The holiday of the spring equinox.',
             'explanation': 'Nooruz is the holiday that welcomes spring and the start of the new year.'}},
 ]
+
+# Детали игры «Собери юрту» — по порядку в starter.GAMES[0]['items']: (title, text, explanation)
+GAME_ITEMS = {
+    'build-a-yurt': [
+        {'ky': ('Кереге — торчо дубалдар', 'Адегенде тегерете жыйылма торчолорду коёт — боз үйдүн дубалдары ушундай пайда болот.', ''),
+         'en': ('Kerege — lattice walls', 'First the folding lattices are set up in a circle — they become the walls of the yurt.', '')},
+        {'ky': ('Эшик', 'Керегенин эки учунун ортосуна жыгач эшиктин алкагын бекитишет.', ''),
+         'en': ('Eshik — the door', 'A wooden door frame is fixed between the two ends of the kerege.', '')},
+        {'ky': ('Түндүк — чокудагы тегерек', 'Түндүктү бакандар менен ортого көтөрүшөт — ал боз үйдүн эң бийик жери болот.', ''),
+         'en': ('Tunduk — the crown circle', 'The tunduk is lifted into the centre on poles — it becomes the top of the yurt.', '')},
+        {'ky': ('Уук — чатырдын жыгачтары', 'Уукторду түндүктүн тешиктерине сайып, керегеге байлашат.', ''),
+         'en': ('Uuk — roof poles', 'The uuk poles are pushed into the holes of the tunduk and tied to the kerege.', '')},
+        {'ky': ('Кийиз — жабуу', 'Каркасты кийиз менен жаап, тегерете боо менен байлашат. Боз үй даяр!', ''),
+         'en': ('Kiyiz — felt cover', 'The frame is covered with felt and tied round with bands. The yurt is ready!', '')},
+        {'ky': ('Кирпич', '', 'Боз үй — жыйылма үй. Анда кирпич колдонулбайт.'),
+         'en': ('Bricks', '', 'A yurt is a home you can take apart. Bricks are not used in it.')},
+        {'ky': ('Шифер чатыр', '', 'Боз үйдүн чатыры уук жана кийизден жасалат.'),
+         'en': ('A slate roof', '', 'The roof of a yurt is made of poles and felt.')},
+        {'ky': ('Айнек терезе', '', 'Боз үйгө жарык үстүндөгү түндүктөн кирет.'),
+         'en': ('A glass window', '', 'Light comes into a yurt through the tunduk at the top.')},
+    ],
+}
