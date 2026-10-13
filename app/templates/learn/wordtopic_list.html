@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% translate "Kyrgyz language" as t %}{% seo_meta title=t %}{% endblock %}
+{% block content %}
+{% translate "Kyrgyz language" as t %}{% translate "Learn your first Kyrgyz words by topic: flip the cards and listen to the pronunciation." as lead %}
+{% include "components/page_hero.html" with title=t lead=lead art=section.art parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    {% if topics %}<div class="grid">{% for topic in topics %}{% include "components/card.html" with obj=topic badge=topic.words.count art=section.art i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% load i18n %}
+{% if obj.duration_min %}{% blocktranslate with m=obj.duration_min asvar meta %}{{ m }} min{% endblocktranslate %}{% endif %}
+{% include "components/card.html" with obj=obj kicker=obj.get_kind_display badge=obj.get_difficulty_display meta=meta art="sections/practice.svg" %}

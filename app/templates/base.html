@@ -1,17 +1,27 @@
-{% load i18n static %}<!doctype html>
+{% load i18n static seo_tags %}<!doctype html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Web Kyrgyzstan{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}{% translate 'An interactive educational website about Kyrgyzstan for children and teenagers.' %}{% endblock %}">
+  <script>document.documentElement.classList.add('js')</script>
+  {% block seo %}{% seo_meta %}{% endblock %}
+  <meta name="theme-color" content="#fbf7f0">
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="preload" href="{% static 'fonts/golos-text-cyrillic.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{% static 'fonts/geologica-cyrillic.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
   {% block extra_head %}{% endblock %}
+  <script type="module" src="{% static 'js/main.js' %}"></script>
 </head>
-<body>
-  {# Временный каркас этапа 0; полноценная шапка, подвал и дизайн-система — на этапе 2 #}
-  <main id="main">
+<body{% if section %} data-section="{{ section.key }}"{% endif %}>
+  <a class="skip-link" href="#main">{% translate "Skip to content" %}</a>
+  {% include "partials/icons.html" %}
+  {% include "partials/header.html" %}
+  <main id="main" tabindex="-1">
     {% block content %}{% endblock %}
   </main>
+  {% include "partials/footer.html" %}
+  <script type="application/json" id="js-modules">{"map": "{% static 'js/modules/map.js' %}", "quiz": "{% static 'js/modules/quiz.js' %}", "puzzle": "{% static 'js/modules/puzzle.js' %}", "flashcards": "{% static 'js/modules/flashcards.js' %}", "stepper": "{% static 'js/modules/stepper.js' %}", "gallery": "{% static 'js/modules/gallery.js' %}", "video": "{% static 'js/modules/video.js' %}", "pairs": "{% static 'js/modules/pairs.js' %}", "map-guess": "{% static 'js/modules/map-guess.js' %}", "assembly": "{% static 'js/modules/assembly.js' %}"}</script>
 </body>
 </html>

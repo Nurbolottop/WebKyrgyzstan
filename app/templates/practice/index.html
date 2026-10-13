@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta section %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=section.title lead=section.description image=section.cover image_alt=section.cover_alt credit=section.cover_credit art=section.art %}
+{% for group in groups %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ group.label }}</h2>
+      {% url group.url_name as list_url %}
+      <a class="arrow-link" href="{{ list_url }}">{% translate "See all" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    {% if group.items %}
+      <div class="grid">{% for a in group.items %}{% include "practice/_card.html" with obj=a i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

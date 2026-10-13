@@ -1,0 +1,87 @@
+/*
+ * Дизайн-токены Web Kyrgyzstan.
+ * Структура — как в Atlas (радиусы, кривая, контейнер, шкала заголовков),
+ * палитра — тёплая, по мотивам Кыргызстана: флаг, Иссык-Куль, джайлоо, шырдак.
+ * Цвета текста на акцентах проверены на контраст WCAG AA.
+ */
+:root {
+  /* Поверхности */
+  --bg: #fbf7f0;
+  --surface: #ffffff;
+  --surface-2: #f4eee3;
+  --surface-3: #eae2d3;
+  --border: #e6ddcc;
+  --border-strong: #cfc3ae;
+
+  /* Текст */
+  --ink: #15213b;
+  --ink-2: #2b3654;
+  --muted: #5d667a;
+  --on-accent: #ffffff;
+
+  /* Бренд */
+  --red: #d6282b;
+  --red-ink: #b71f22;
+  --sun: #f4b400;
+  --sun-soft: #fdf1cf;
+  --sky: #dcecf7;
+
+  /* Цвета разделов: основной, светлый фон, текст на светлом фоне */
+  --discover: #087882;
+  --discover-soft: #dcf1f0;
+  --culture: #c2502f;
+  --culture-soft: #f9e5dc;
+  --learn: #e8a200;
+  --learn-soft: #fdf1cf;
+  --learn-ink: #6b4a00;
+  --practice: #2a7d40;
+  --practice-soft: #e0f1e2;
+  --modern: #3b55e6;
+  --modern-soft: #e2e7fd;
+
+  /* Акцент текущего раздела (переопределяется через data-section) */
+  --accent: var(--red);
+  --accent-soft: #fbe3e1;
+  --accent-ink: var(--red-ink);
+
+  --success: #1d7a46;
+  --success-soft: #dcf3e5;
+  --danger: #c0362c;
+  --danger-soft: #fbe2df;
+  --focus: #1f5fd1;
+
+  /* Типографика */
+  --display: 'Geologica', 'Golos Text', system-ui, sans-serif;
+  --font: 'Golos Text', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --text-base: 1.125rem;   /* 18px — крупнее обычного, для детей */
+  --leading: 1.6;
+  --h1: clamp(2.25rem, 5.6vw, 4.5rem);
+  --h2: clamp(1.75rem, 3.8vw, 2.875rem);
+  --h3: clamp(1.25rem, 2vw, 1.5rem);
+
+  /* Форма */
+  --radius-s: 10px;
+  --radius: 18px;
+  --radius-l: 28px;
+  --radius-pill: 999px;
+  --shadow-s: 0 1px 2px rgba(21, 33, 59, .06), 0 2px 8px rgba(21, 33, 59, .05);
+  --shadow: 0 12px 32px rgba(21, 33, 59, .10);
+  --shadow-l: 0 24px 60px rgba(21, 33, 59, .16);
+
+  /* Движение */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --fast: .18s;
+  --slow: .5s;
+
+  /* Сетка */
+  --container: 1240px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --header-h: 72px;
+  --section-gap: clamp(64px, 10vw, 128px);
+}
+
+[data-section="discover"] { --accent: var(--discover); --accent-soft: var(--discover-soft); --accent-ink: var(--discover); }
+[data-section="culture"]  { --accent: var(--culture);  --accent-soft: var(--culture-soft);  --accent-ink: var(--culture); }
+[data-section="learn"]    { --accent: var(--learn);    --accent-soft: var(--learn-soft);    --accent-ink: var(--learn-ink); --on-accent: var(--ink); }
+[data-section="practice"] { --accent: var(--practice); --accent-soft: var(--practice-soft); --accent-ink: var(--practice); }
+[data-section="modern"]   { --accent: var(--modern);   --accent-soft: var(--modern-soft);   --accent-ink: var(--modern); }

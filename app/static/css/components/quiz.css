@@ -1,0 +1,136 @@
+/* Викторины, мини-викторина, загадки */
+.quiz {
+  position: relative;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.quiz__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; font-size: .9rem; color: var(--muted); }
+.quiz__progress { flex: 1; max-width: 260px; height: 8px; border-radius: 8px; background: var(--surface-3); overflow: hidden; }
+.quiz__progress span { display: block; height: 100%; background: var(--learn); transition: width .4s var(--ease); }
+.quiz__question { font-size: clamp(1.35rem, 2.6vw, 1.9rem); margin-bottom: 24px; }
+.quiz__image { margin-bottom: 22px; border-radius: var(--radius); max-height: 360px; object-fit: cover; width: 100%; }
+
+.answers { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 700px) { .answers { grid-template-columns: 1fr 1fr; } }
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: left;
+  transition: border-color var(--fast) var(--ease), background-color var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+.answer:hover:not(:disabled) { border-color: var(--ink); transform: translateY(-2px); }
+.answer__letter {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-weight: 700;
+  font-size: .9rem;
+}
+.answer:disabled { cursor: default; }
+.answer.is-correct { border-color: var(--success); background: var(--success-soft); animation: pop .4s var(--ease); }
+.answer.is-correct .answer__letter { background: var(--success); color: #fff; }
+.answer.is-wrong { border-color: var(--danger); background: var(--danger-soft); animation: shake .4s var(--ease); }
+.answer.is-wrong .answer__letter { background: var(--danger); color: #fff; }
+
+.feedback {
+  display: none;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.feedback.is-visible { display: block; animation: pop .35s var(--ease); }
+.feedback strong { display: block; margin-bottom: 4px; font-family: var(--display); font-size: 1.15rem; }
+.feedback.is-correct { background: var(--success-soft); }
+.feedback.is-correct strong { color: var(--success); }
+.feedback.is-wrong { background: var(--danger-soft); }
+.feedback.is-wrong strong { color: var(--danger); }
+.quiz__next { margin-top: 20px; }
+
+.quiz__result { display: grid; justify-items: center; gap: 16px; padding-block: 12px; text-align: center; }
+.quiz__score {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(var(--learn) calc(var(--score, 0) * 1%), var(--surface-3) 0);
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+.quiz__score span { display: grid; place-items: center; width: 116px; height: 116px; border-radius: 50%; background: var(--surface); }
+
+/* Загадки и ребусы */
+.puzzle {
+  display: grid;
+  gap: 16px;
+  padding: 26px;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  box-shadow: var(--shadow-s);
+}
+.puzzle__prompt { font-size: 1.15rem; font-weight: 500; white-space: pre-line; }
+.puzzle img { border-radius: var(--radius); }
+.puzzle form { display: flex; flex-wrap: wrap; gap: 10px; }
+.puzzle input[type="text"] {
+  flex: 1;
+  min-width: 180px;
+  min-height: 52px;
+  padding: 12px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+}
+.puzzle input[type="text"]:focus { border-color: var(--ink); outline: none; }
+.puzzle details summary { cursor: pointer; font-weight: 600; color: var(--accent-ink); }
+.puzzle .feedback { margin-top: 0; }
+
+/* Карточки слов */
+.flashcards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin: 0; padding: 0; list-style: none; }
+.flashcard { perspective: 900px; }
+.flashcard button {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform-style: preserve-3d;
+  transition: transform .55s var(--ease);
+}
+.flashcard.is-flipped button { transform: rotateY(180deg); }
+.flashcard__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  box-shadow: var(--shadow-s);
+  backface-visibility: hidden;
+  text-align: center;
+}
+.flashcard__face img { width: 70%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.flashcard__word { font-family: var(--display); font-size: 1.6rem; font-weight: 700; }
+.flashcard__face small { color: var(--muted); }
+.flashcard__face--back { background: var(--learn-soft); transform: rotateY(180deg); }
+.flashcard__audio { margin-top: 10px; }

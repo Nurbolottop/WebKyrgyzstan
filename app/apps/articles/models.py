@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.base.models import ContentModel, CoverMixin, Fact, GalleryImage, PublishableModel, upload_to
@@ -31,6 +32,9 @@ class Category(PublishableModel, CoverMixin):
 
     def __str__(self):
         return f'{self.section} → {self.title}'
+
+    def get_absolute_url(self):
+        return reverse(f'{self.section.key}:category', kwargs={'category': self.slug})
 
     def clean(self):
         if self.slug in RESERVED_CATEGORY_SLUGS:
@@ -73,3 +77,7 @@ class Article(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'статья'
         verbose_name_plural = 'статьи'
+
+    def get_absolute_url(self):
+        category = self.category
+        return reverse(f'{category.section.key}:article', kwargs={'category': category.slug, 'slug': self.slug})

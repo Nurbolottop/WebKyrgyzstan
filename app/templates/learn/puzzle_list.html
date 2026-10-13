@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n seo_tags site_tags %}
+{% block seo %}{% seo_meta title=kind_label %}{% endblock %}
+{% block content %}
+{% if kind == "rebus" %}{% translate "Look at the picture and guess the word." as lead %}{% else %}{% translate "Read the riddle and type the answer. Stuck? Use the hint!" as lead %}{% endif %}
+{% include "components/page_hero.html" with title=kind_label lead=lead art=section.art parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    {% if puzzles %}
+      <div class="grid grid--wide">
+        {% for puzzle in puzzles %}
+          <article class="puzzle reveal" data-module="puzzle" style="--i: {{ forloop.counter0 }}"
+                   data-answers="{{ puzzle.answer }}{% for a in puzzle.alt_answers|lines %}|{{ a }}{% endfor %}">
+            {% if puzzle.image %}{% picture puzzle.image puzzle.image_alt "(min-width: 800px) 45vw, 100vw" %}{% endif %}
+            <p class="puzzle__prompt">{{ puzzle.prompt }}</p>
+            {% with options=puzzle.options|lines %}
+              {% if options %}
+                <div class="chips" role="group" aria-label="{% translate 'Answer options' %}">
+                  {% for option in options %}<button class="chip" type="button" data-option="{{ option }}">{{ option }}</button>{% endfor %}
+                </div>
+              {% else %}
+                <form>
+                  <label class="visually-hidden" for="p-{{ puzzle.pk }}">{% translate "Your answer" %}</label>
+                  <input id="p-{{ puzzle.pk }}" type="text" autocomplete="off" placeholder="{% translate 'Your answer' %}">
+                  <button class="btn btn--section btn--small" type="submit">{% translate "Check" %}</button>
+                </form>
+              {% endif %}
+            {% endwith %}
+            <div class="feedback" role="status" aria-live="polite" data-correct="{% translate 'Correct!' %}" data-wrong="{% translate 'Not quite, try again' %}"></div>
+            {% if puzzle.hint %}<details><summary>{% translate "Hint" %}</summary><p>{{ puzzle.hint }}</p></details>{% endif %}
+            <details><summary>{% translate "Show the answer" %}</summary><p><strong>{{ puzzle.answer }}</strong></p>{% if puzzle.explanation %}<p>{{ puzzle.explanation }}</p>{% endif %}</details>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

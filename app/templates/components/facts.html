@@ -1,0 +1,9 @@
+{% load i18n %}
+{% if facts %}
+<section class="block">
+  <h2>{% translate "Did you know?" %}</h2>
+  <div class="grid" style="--card-min: 260px">
+    {% for fact in facts %}<p class="fact reveal" style="--i: {{ forloop.counter0 }}">{{ fact.text }}</p>{% endfor %}
+  </div>
+</section>
+{% endif %}

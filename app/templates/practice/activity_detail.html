@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n seo_tags site_tags %}
+{% block seo %}{% seo_meta activity %}{% endblock %}
+{% block content %}
+{% url list_url as list_href %}
+{% include "components/page_hero.html" with title=activity.title lead=activity.summary eyebrow=kind_label image=activity.cover image_alt=activity.cover_alt credit=activity.cover_credit parent_url=section.get_absolute_url parent_label=section.title sub_url=list_href sub_label=kind_label %}
+<div class="container detail">
+  <div class="detail__main">
+    {% if activity.safety_notes %}
+      <div class="safety" role="note"><svg aria-hidden="true"><use href="#i-alert"/></svg>
+        <div><strong>{% translate "Safety first" %}</strong>{{ activity.safety_notes|linebreaksbr }}</div>
+      </div>
+    {% endif %}
+    {% if activity.body %}<div class="prose">{{ activity.body|safe }}</div>{% endif %}
+    {% if activity.sample_image %}
+      <section class="block"><h2>{% translate "Sample" %}</h2>{% picture activity.sample_image activity.sample_image_alt "(min-width: 1000px) 60vw, 100vw" %}</section>
+    {% endif %}
+    {% include "components/video.html" with url=activity.video_url %}
+    <section class="block">
+      <h2>{% translate "Step by step" %}</h2>
+      {% if steps %}
+        <div class="stepper" data-module="stepper">
+          <ol class="steps">
+            {% for step in steps %}
+              <li class="step">
+                {% if step.title %}<h3>{{ step.title }}</h3>{% endif %}
+                <p>{{ step.text|linebreaksbr }}</p>
+                {% if step.image %}{% picture step.image step.image_alt "(min-width: 1000px) 55vw, 100vw" %}{% endif %}
+                {% include "components/video.html" with url=step.video_url %}
+              </li>
+            {% endfor %}
+          </ol>
+          <div class="stepper__nav">
+            <button class="btn btn--outline btn--small" type="button" data-prev>{% translate "Back" %}</button>
+            <div class="stepper__progress" aria-hidden="true"><span></span></div>
+            <span class="muted" data-counter></span>
+            <button class="btn btn--section btn--small" type="button" data-next>{% translate "Next step" %}</button>
+          </div>
+        </div>
+      {% else %}{% include "components/empty.html" %}{% endif %}
+    </section>
+  </div>
+  <aside class="detail__aside">
+    <div class="panel">
+      <ul class="chips">
+        <li class="chip"><svg aria-hidden="true"><use href="#i-level"/></svg>{{ activity.get_difficulty_display }}</li>
+        {% if activity.duration_min %}<li class="chip"><svg aria-hidden="true"><use href="#i-clock"/></svg>{% blocktranslate with m=activity.duration_min %}{{ m }} min{% endblocktranslate %}</li>{% endif %}
+        {% if activity.servings %}<li class="chip"><svg aria-hidden="true"><use href="#i-people"/></svg>{% blocktranslate count n=activity.servings %}{{ n }} serving{% plural %}{{ n }} servings{% endblocktranslate %}</li>{% endif %}
+      </ul>
+    </div>
+    {% if supplies %}
+      <div class="panel">
+        <h2>{% if activity.kind == "recipe" %}{% translate "Ingredients" %}{% else %}{% translate "You will need" %}{% endif %}</h2>
+        <ul class="supplies">
+          {% for s in supplies %}<li><label><input type="checkbox"><span>{{ s.name }}</span>{% if s.amount %}<small>{{ s.amount }}</small>{% endif %}</label></li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </aside>
+</div>
+{% if more %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>{% translate "Try more" %}</h2></div>
+    <div class="grid">{% for a in more %}{% include "practice/_card.html" with obj=a i=forloop.counter0 %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

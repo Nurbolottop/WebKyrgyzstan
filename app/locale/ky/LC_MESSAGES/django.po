@@ -1,0 +1,693 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-13 10:18+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ky\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/articles/apps.py:8
+msgid "Articles"
+msgstr "Макалалар"
+
+#: apps/articles/models.py:46
+msgid "Article"
+msgstr "Макала"
+
+#: apps/articles/models.py:47
+msgid "Profile"
+msgstr "Профиль"
+
+#: apps/articles/models.py:48
+msgid "Profession"
+msgstr "Кесип"
+
+#: apps/base/apps.py:8
+msgid "Site"
+msgstr "Сайт"
+
+#: apps/base/choices.py:6 apps/discover/apps.py:8
+msgid "Discover Kyrgyzstan"
+msgstr "Кыргызстанды ачып көр"
+
+#: apps/base/choices.py:7
+msgid "Culture and Traditions"
+msgstr "Маданият жана салттар"
+
+#: apps/base/choices.py:8
+msgid "Learn and Play"
+msgstr "Үйрөн жана ойно"
+
+#: apps/base/choices.py:9
+msgid "Try It Yourself"
+msgstr "Өзүң жасап көр"
+
+#: apps/base/choices.py:10
+msgid "Modern Kyrgyzstan"
+msgstr "Азыркы Кыргызстан"
+
+#: apps/base/choices.py:14
+msgid "Easy"
+msgstr "Жеңил"
+
+#: apps/base/choices.py:15
+msgid "Medium"
+msgstr "Орточо"
+
+#: apps/base/choices.py:16
+msgid "Hard"
+msgstr "Татаал"
+
+#: apps/discover/models.py:13 templates/components/map.html:11
+#: templates/discover/place_detail.html:21
+msgid "Region"
+msgstr "Облус"
+
+#: apps/discover/models.py:14 templates/components/map.html:12
+msgid "City of republican significance"
+msgstr "Республикалык маанидеги шаар"
+
+#: apps/discover/models.py:43
+msgid "Lake"
+msgstr "Көл"
+
+#: apps/discover/models.py:44
+msgid "Mountain"
+msgstr "Тоо"
+
+#: apps/discover/models.py:45
+msgid "Nature"
+msgstr "Жаратылыш"
+
+#: apps/discover/models.py:46
+msgid "Historic site"
+msgstr "Тарыхый эстелик"
+
+#: apps/discover/models.py:47
+msgid "City"
+msgstr "Шаар"
+
+#: apps/learn/apps.py:8 templates/home/index.html:24
+msgid "Learn and play"
+msgstr "Үйрөн жана ойно"
+
+#: apps/learn/models.py:12 templates/discover/region_detail.html:10
+msgid "Geography"
+msgstr "География"
+
+#: apps/learn/models.py:13
+msgid "History"
+msgstr "Тарых"
+
+#: apps/learn/models.py:14
+msgid "Culture"
+msgstr "Маданият"
+
+#: apps/learn/models.py:15
+msgid "Nature and animals"
+msgstr "Жаратылыш жана жаныбарлар"
+
+#: apps/learn/models.py:16 templates/learn/index.html:14
+#: templates/learn/wordtopic_detail.html:6
+#: templates/learn/wordtopic_list.html:3 templates/learn/wordtopic_list.html:5
+msgid "Kyrgyz language"
+msgstr "Кыргыз тили"
+
+#: apps/learn/models.py:85
+msgid "Riddle"
+msgstr "Табышмак"
+
+#: apps/learn/models.py:86
+msgid "Rebus"
+msgstr "Ребус"
+
+#: apps/practice/apps.py:8
+msgid "Try it yourself"
+msgstr "Өзүң жасап көр"
+
+#: apps/practice/models.py:15
+msgid "Recipe"
+msgstr "Рецепт"
+
+#: apps/practice/models.py:16
+msgid "Master class"
+msgstr "Мастер-класс"
+
+#: apps/practice/models.py:17
+msgid "Creative task"
+msgstr "Чыгармачыл тапшырма"
+
+#: templates/404.html:3
+msgid "Page not found"
+msgstr "Барак табылган жок"
+
+#: templates/404.html:7
+msgid "Oops, this page got lost in the mountains"
+msgstr "Ой, бул барак тоолордо адашып калды"
+
+#: templates/404.html:8
+msgid "Perhaps the address is wrong or the material has been removed."
+msgstr "Дарек туура эмес терилген же материал өчүрүлгөн болушу мүмкүн."
+
+#: templates/404.html:9
+msgid "Go to the home page"
+msgstr "Башкы бетке"
+
+#: templates/articles/article_detail.html:12
+#: templates/learn/wordtopic_detail.html:25
+msgid "Listen"
+msgstr "Угуу"
+
+#: templates/articles/article_detail.html:22
+msgid "Where"
+msgstr "Кайда"
+
+#: templates/articles/article_detail.html:27
+msgid "Read also"
+msgstr "Дагы окуңуз"
+
+#: templates/articles/category.html:8 templates/articles/section_index.html:19
+msgid "Topics"
+msgstr "Темалар"
+
+#: templates/articles/section_index.html:11
+msgid "Interactive"
+msgstr "Интерактив"
+
+#: templates/articles/section_index.html:11
+msgid "Play"
+msgstr "Ойноо"
+
+#: templates/articles/section_index.html:30
+msgid "Materials"
+msgstr "Материалдар"
+
+#: templates/articles/section_index.html:40
+msgid "Quizzes on the topic"
+msgstr "Тема боюнча викториналар"
+
+#: templates/base.html:18
+msgid "Skip to content"
+msgstr "Мазмунга өтүү"
+
+#: templates/components/empty.html:4
+msgid "Materials will appear here soon."
+msgstr "Жакында бул жерде материалдар пайда болот."
+
+#: templates/components/facts.html:4
+msgid "Did you know?"
+msgstr "Билесиңби?"
+
+#: templates/components/gallery.html:4
+msgid "Photo gallery"
+msgstr "Фотогалерея"
+
+#: templates/components/gallery.html:15
+msgid "Photo"
+msgstr "Сүрөт"
+
+#: templates/components/gallery.html:16
+msgid "Close"
+msgstr "Жабуу"
+
+#: templates/components/map.html:8
+msgid "Open"
+msgstr "Ачуу"
+
+#: templates/components/map.html:13
+msgid "Landmark"
+msgstr "Кооз жер"
+
+#: templates/components/map.html:16
+msgid "Centre"
+msgstr "Борбору"
+
+#: templates/components/map.html:16 templates/discover/index.html:26
+#: templates/discover/region_detail.html:14
+msgid "Landmarks"
+msgstr "Кооз жерлер"
+
+#: templates/components/page_hero.html:7
+msgid "Breadcrumbs"
+msgstr "Навигация"
+
+#: templates/components/page_hero.html:9 templates/partials/header.html:4
+msgid "Home"
+msgstr "Башкы бет"
+
+#: templates/components/quiz.html:9 templates/learn/puzzle_list.html:31
+msgid "Show the answer"
+msgstr "Жоопту көрсөтүү"
+
+#: templates/components/quiz.html:17
+msgid "Question"
+msgstr "Суроо"
+
+#: templates/components/quiz.html:17
+msgid "of"
+msgstr "/"
+
+#: templates/components/quiz.html:17 templates/learn/puzzle_list.html:29
+msgid "Correct!"
+msgstr "Туура!"
+
+#: templates/components/quiz.html:17
+msgid "Not quite"
+msgstr "Туура эмес"
+
+#: templates/components/quiz.html:17
+msgid "The right answer"
+msgstr "Туура жооп"
+
+#: templates/components/quiz.html:17
+msgid "Next"
+msgstr "Андан ары"
+
+#: templates/components/quiz.html:17
+msgid "See the result"
+msgstr "Жыйынтыкты көрүү"
+
+#: templates/components/quiz.html:17
+msgid "Your result"
+msgstr "Сенин жыйынтыгың"
+
+#: templates/components/quiz.html:17
+msgid "Try again"
+msgstr "Кайра аракет кыл"
+
+#: templates/components/quiz.html:17
+msgid "Excellent! You know Kyrgyzstan very well."
+msgstr "Эң сонун! Сен Кыргызстанды абдан жакшы билесиң."
+
+#: templates/components/quiz.html:17
+msgid "Good job! A little more and you will know everything."
+msgstr "Жакшы! Дагы бир аз — баарын билип каласың."
+
+#: templates/components/quiz.html:17
+msgid "Keep exploring the site and try again!"
+msgstr "Сайтты андан ары изилде жана кайра аракет кыл!"
+
+#: templates/components/video.html:5
+msgid "Play video"
+msgstr "Видеону көрүү"
+
+#: templates/discover/index.html:10 templates/svg/map_kyrgyzstan.html:3
+msgid "Map of Kyrgyzstan"
+msgstr "Кыргызстандын картасы"
+
+#: templates/discover/index.html:11
+msgid "Click a region on the map or choose it from the list."
+msgstr "Картадагы облусту бас же тизмеден танда."
+
+#: templates/discover/index.html:14
+msgid "Boundaries"
+msgstr "Чек аралар"
+
+#: templates/discover/index.html:27 templates/discover/place_detail.html:25
+msgid "All landmarks"
+msgstr "Бардык кооз жерлер"
+
+#: templates/discover/index.html:38
+msgid "About nature"
+msgstr "Жаратылыш жөнүндө"
+
+#: templates/discover/place_detail.html:12
+#, python-format
+msgid "More in %(region)s"
+msgstr "Дагы: %(region)s"
+
+#: templates/discover/place_detail.html:22
+msgid "Type"
+msgstr "Түрү"
+
+#: templates/discover/place_list.html:3 templates/discover/place_list.html:5
+msgid "Landmarks of Kyrgyzstan"
+msgstr "Кыргызстандын кооз жерлери"
+
+#: templates/discover/place_list.html:5
+msgid "Lakes, mountains, nature reserves and ancient monuments."
+msgstr "Көлдөр, тоолор, коруктар жана байыркы эстеликтер."
+
+#: templates/discover/place_list.html:9 templates/learn/quiz_list.html:9
+#: templates/practice/activity_list.html:8
+msgid "Filter"
+msgstr "Чыпка"
+
+#: templates/discover/place_list.html:11 templates/learn/quiz_list.html:11
+msgid "All"
+msgstr "Баары"
+
+#: templates/discover/region_detail.html:11
+msgid "Mountains, lakes and nature"
+msgstr "Тоолор, көлдөр жана жаратылыш"
+
+#: templates/discover/region_detail.html:20
+msgid "Culture and local traditions"
+msgstr "Маданият жана жергиликтүү өзгөчөлүктөр"
+
+#: templates/discover/region_detail.html:24
+msgid "Read more"
+msgstr "Дагы окуу"
+
+#: templates/discover/region_detail.html:33
+msgid "Administrative centre"
+msgstr "Административдик борбору"
+
+#: templates/discover/region_detail.html:34
+msgid "Area"
+msgstr "Аянты"
+
+#: templates/discover/region_detail.html:34
+msgid "km²"
+msgstr "км²"
+
+#: templates/discover/region_detail.html:35
+msgid "Population"
+msgstr "Калкы"
+
+#: templates/discover/region_detail.html:36
+msgid "Landmarks on the site"
+msgstr "Сайттагы кооз жерлер"
+
+#: templates/discover/region_detail.html:42
+msgid "Back to the map"
+msgstr "Картага кайтуу"
+
+#: templates/home/index.html:14
+msgid "Discover <em>amazing</em> Kyrgyzstan!"
+msgstr "<em>Укмуштуу</em> Кыргызстанды ачып көр!"
+
+#: templates/home/index.html:17
+msgid ""
+"Explore the nature, history, culture and traditions of Kyrgyzstan, take "
+"quizzes, play games and try interactive tasks."
+msgstr ""
+"Кыргызстандын жаратылышын, тарыхын, маданиятын жана салттарын изилде, "
+"викториналарга катыш, ойно жана интерактивдүү тапшырмаларды аткар."
+
+#: templates/home/index.html:21
+msgid "Start exploring"
+msgstr "Изилдөөнү баштоо"
+
+#: templates/home/index.html:26
+msgid "Kyrgyzstan in numbers"
+msgstr "Кыргызстан сандарда"
+
+#: templates/home/index.html:27
+msgid "regions"
+msgstr "облус"
+
+#: templates/home/index.html:28
+msgid "cities of republican significance"
+msgstr "республикалык маанидеги шаар"
+
+#: templates/home/index.html:29
+msgid "languages"
+msgstr "тил"
+
+#: templates/home/index.html:44
+msgid "Issyk-Kul"
+msgstr "Ысык-Көл"
+
+#: templates/home/index.html:44
+msgid "one of the largest mountain lakes in the world"
+msgstr "дүйнөдөгү эң чоң тоо көлдөрүнүн бири"
+
+#: templates/home/index.html:48 templates/learn/index.html:11
+#: templates/learn/index.html:22 templates/learn/quiz_detail.html:5
+#: templates/learn/quiz_list.html:5
+msgid "Quizzes"
+msgstr "Викториналар"
+
+#: templates/home/index.html:48
+msgid "test yourself"
+msgstr "өзүңдү текшер"
+
+#: templates/home/index.html:59
+msgid "Five directions"
+msgstr "Беш багыт"
+
+#: templates/home/index.html:60
+msgid "Where shall we start?"
+msgstr "Эмнеден баштайбыз?"
+
+#: templates/home/index.html:62
+msgid ""
+"Choose a direction: travel across the map, get to know traditions, play, "
+"cook or meet the people of modern Kyrgyzstan."
+msgstr ""
+"Багыт танда: карта боюнча саякатта, салттар менен тааныш, ойно, тамак жаса "
+"же азыркы Кыргызстандын адамдары жөнүндө бил."
+
+#: templates/home/index.html:84
+msgid "Explore Kyrgyzstan"
+msgstr "Кыргызстанды изилде"
+
+#: templates/home/index.html:85
+msgid "Seven regions and two special cities"
+msgstr "Жети облус жана эки өзгөчө шаар"
+
+#: templates/home/index.html:86
+msgid ""
+"Hover over a region to see its name, then click to learn about its "
+"mountains, lakes and sights."
+msgstr ""
+"Облустун атын көрүү үчүн анын үстүнө алып бар, ал эми тоолору, көлдөрү жана "
+"кооз жерлери жөнүндө билүү үчүн бас."
+
+#: templates/home/index.html:87
+msgid "Open the map"
+msgstr "Картаны ачуу"
+
+#: templates/home/index.html:100
+msgid "Interesting"
+msgstr "Кызыктуу"
+
+#: templates/home/index.html:101
+msgid "Interesting materials"
+msgstr "Кызыктуу материалдар"
+
+#: templates/home/index.html:121
+msgid "Quick question"
+msgstr "Тез суроо"
+
+#: templates/home/index.html:122
+msgid "Test yourself!"
+msgstr "Өзүңдү текшер!"
+
+#: templates/home/index.html:123
+msgid "Choose an answer and find out whether you are right."
+msgstr "Жоопту танда жана туура экениңди бил."
+
+#: templates/home/index.html:124
+msgid "Take the whole quiz"
+msgstr "Бүт викторинаны өтүү"
+
+#: templates/learn/game_detail.html:5
+msgid "Game"
+msgstr "Оюн"
+
+#: templates/learn/game_detail.html:12
+msgid "Well done!"
+msgstr "Азаматсың!"
+
+#: templates/learn/game_detail.html:14
+msgid "This game needs JavaScript enabled."
+msgstr "Бул оюн үчүн JavaScript күйгүзүлүшү керек."
+
+#: templates/learn/game_list.html:3 templates/learn/game_list.html:5
+#: templates/learn/index.html:15 templates/learn/index.html:31
+msgid "Mini-games"
+msgstr "Мини-оюндар"
+
+#: templates/learn/game_list.html:5
+msgid "Educational games that work right in the browser."
+msgstr "Браузерде эле иштеген таанып-билүүчү оюндар."
+
+#: templates/learn/index.html:11
+msgid "Geography, history, culture and nature"
+msgstr "География, тарых, маданият жана жаратылыш"
+
+#: templates/learn/index.html:12
+msgid "Riddles"
+msgstr "Табышмактар"
+
+#: templates/learn/index.html:12
+msgid "Folk riddles about Kyrgyzstan"
+msgstr "Кыргызстан жөнүндө элдик табышмактар"
+
+#: templates/learn/index.html:13
+msgid "Rebuses"
+msgstr "Ребустар"
+
+#: templates/learn/index.html:13
+msgid "Guess the word from pictures"
+msgstr "Сүрөттөрдөн сөздү тап"
+
+#: templates/learn/index.html:14
+msgid "Words, translations and pronunciation"
+msgstr "Сөздөр, котормолор жана айтылышы"
+
+#: templates/learn/index.html:15
+msgid "Play right in the browser"
+msgstr "Браузерде эле ойно"
+
+#: templates/learn/index.html:22
+msgid "All quizzes"
+msgstr "Бардык викториналар"
+
+#: templates/learn/puzzle_list.html:5
+msgid "Look at the picture and guess the word."
+msgstr "Сүрөттү карап, сөздү тап."
+
+#: templates/learn/puzzle_list.html:5
+msgid "Read the riddle and type the answer. Stuck? Use the hint!"
+msgstr "Табышмакты окуп, жоопту жаз. Таба албай жатасыңбы? Жардамды колдон!"
+
+#: templates/learn/puzzle_list.html:18
+msgid "Answer options"
+msgstr "Жооп варианттары"
+
+#: templates/learn/puzzle_list.html:23 templates/learn/puzzle_list.html:24
+msgid "Your answer"
+msgstr "Сенин жообуң"
+
+#: templates/learn/puzzle_list.html:25
+msgid "Check"
+msgstr "Текшерүү"
+
+#: templates/learn/puzzle_list.html:29
+msgid "Not quite, try again"
+msgstr "Туура эмес, дагы аракет кыл"
+
+#: templates/learn/puzzle_list.html:30
+msgid "Hint"
+msgstr "Жардам"
+
+#: templates/learn/quiz_detail.html:15
+msgid "More quizzes"
+msgstr "Дагы викториналар"
+
+#: templates/learn/quiz_list.html:3
+msgid "Quizzes about Kyrgyzstan"
+msgstr "Кыргызстан жөнүндө викториналар"
+
+#: templates/learn/quiz_list.html:5
+msgid ""
+"Choose a quiz, answer the questions and find out how well you know "
+"Kyrgyzstan."
+msgstr ""
+"Викторинаны танда, суроолорго жооп бер жана Кыргызстанды канчалык жакшы "
+"билериңди бил."
+
+#: templates/learn/wordtopic_detail.html:10
+msgid "Tap a card to see the translation."
+msgstr "Котормосун көрүү үчүн карточканы бас."
+
+#: templates/learn/wordtopic_detail.html:31
+msgid "Check yourself"
+msgstr "Өзүңдү текшер"
+
+#: templates/learn/wordtopic_list.html:5
+msgid ""
+"Learn your first Kyrgyz words by topic: flip the cards and listen to the "
+"pronunciation."
+msgstr ""
+"Алгачкы кыргыз сөздөрүн темалар боюнча үйрөн: карточкаларды аңтар жана "
+"айтылышын ук."
+
+#: templates/partials/footer.html:9
+msgid ""
+"An interactive educational website about Kyrgyzstan for children and "
+"teenagers: nature, history, culture, traditions and modern life."
+msgstr ""
+"Балдар жана өспүрүмдөр үчүн Кыргызстан жөнүндө интерактивдүү билим берүүчү "
+"сайт: жаратылыш, тарых, маданият, салттар жана азыркы турмуш."
+
+#: templates/partials/footer.html:13
+msgid "Sections"
+msgstr "Бөлүмдөр"
+
+#: templates/partials/footer.html:19 templates/partials/lang_switcher.html:2
+msgid "Language"
+msgstr "Тил"
+
+#: templates/partials/footer.html:25
+msgid "Map data"
+msgstr "Картанын маалыматтары"
+
+#: templates/partials/header.html:9
+msgid "Main sections"
+msgstr "Негизги бөлүмдөр"
+
+#: templates/partials/header.html:24
+msgid "Open menu"
+msgstr "Менюну ачуу"
+
+#: templates/partials/header.html:29
+msgid "Menu"
+msgstr "Меню"
+
+#: templates/partials/header.html:34
+msgid "Close menu"
+msgstr "Менюну жабуу"
+
+#: templates/practice/_card.html:2 templates/practice/activity_detail.html:47
+#, python-format
+msgid "%(m)s min"
+msgstr "%(m)s мүн"
+
+#: templates/practice/activity_detail.html:11
+msgid "Safety first"
+msgstr "Адегенде — коопсуздук"
+
+#: templates/practice/activity_detail.html:16
+msgid "Sample"
+msgstr "Үлгү"
+
+#: templates/practice/activity_detail.html:20
+msgid "Step by step"
+msgstr "Кадам менен"
+
+#: templates/practice/activity_detail.html:34
+msgid "Back"
+msgstr "Артка"
+
+#: templates/practice/activity_detail.html:37
+msgid "Next step"
+msgstr "Кийинки кадам"
+
+#: templates/practice/activity_detail.html:48
+#, python-format
+msgid "%(n)s serving"
+msgid_plural "%(n)s servings"
+msgstr[0] "%(n)s порция"
+msgstr[1] "%(n)s порция"
+
+#: templates/practice/activity_detail.html:53
+msgid "Ingredients"
+msgstr "Азыктар"
+
+#: templates/practice/activity_detail.html:53
+msgid "You will need"
+msgstr "Керек болот"
+
+#: templates/practice/activity_detail.html:64
+msgid "Try more"
+msgstr "Дагы аракет кыл"
+
+#: templates/practice/index.html:12
+msgid "See all"
+msgstr "Баарын көрүү"

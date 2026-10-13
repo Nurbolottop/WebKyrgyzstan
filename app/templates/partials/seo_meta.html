@@ -1,0 +1,12 @@
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+{% for link in language_links %}<link rel="alternate" hreflang="{{ link.code }}" href="{{ link.absolute }}">
+{% endfor %}{% with default=language_links.0 %}{% if default %}<link rel="alternate" hreflang="x-default" href="{{ default.absolute }}">{% endif %}{% endwith %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+{% if image_url %}<meta property="og:image" content="{{ image_url }}">
+<meta name="twitter:card" content="summary_large_image">{% endif %}

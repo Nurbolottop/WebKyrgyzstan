@@ -1,0 +1,17 @@
+{% load i18n %}
+{# Интерактивная карта. Ожидает в контексте map из discover.services.map_context #}
+<div class="kg-map" data-module="map">
+  {% include "svg/map_kyrgyzstan.html" %}
+  <div class="kg-map__tip" role="status" aria-live="polite"></div>
+  <div class="kg-map__sheet" aria-live="polite">
+    <div><strong></strong><br><span class="muted"></span></div>
+    <a class="btn btn--section btn--small" href="#">{% translate "Open" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+  <div class="kg-map__legend">
+    <span><i style="background:#b9e1dc"></i>{% translate "Region" %}</span>
+    <span><i style="background:var(--red)"></i>{% translate "City of republican significance" %}</span>
+    {% if map.pins %}<span><i style="background:var(--sun);border:2px solid var(--ink)"></i>{% translate "Landmark" %}</span>{% endif %}
+  </div>
+  {{ map.tips|json_script:"map-tips" }}
+  <script type="application/json" id="map-i18n">{"capital": "{{ _("Centre")|escapejs }}", "places": "{{ _("Landmarks")|escapejs }}"}</script>
+</div>

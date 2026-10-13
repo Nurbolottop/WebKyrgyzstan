@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block seo %}<title>{% translate "Page not found" %} — Web Kyrgyzstan</title><meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container">
+  <p class="eyebrow">404</p>
+  <h1>{% translate "Oops, this page got lost in the mountains" %}</h1>
+  <p class="lead">{% translate "Perhaps the address is wrong or the material has been removed." %}</p>
+  <div class="page-hero__actions"><a class="btn btn--accent" href="{% url 'base:home' %}">{% translate "Go to the home page" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+</div></section>
+{% endblock %}

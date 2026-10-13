@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta article %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=article.title lead=article.subtitle|default:article.summary eyebrow=article.category.title image=article.cover image_alt=article.cover_alt credit=article.cover_credit parent_url=section.get_absolute_url parent_label=section.title sub_url=article.category.get_absolute_url sub_label=article.category.title %}
+<div class="container detail">
+  <div class="detail__main">
+    {% if article.body %}<div class="prose">{{ article.body|safe }}</div>{% endif %}
+    {% include "components/video.html" with url=article.video_url %}
+    {% if article.audio %}
+      <div class="audio">
+        <strong>{{ article.audio_title|default:_("Listen") }}</strong>
+        <audio controls preload="none" src="{{ article.audio.url }}"></audio>
+        {% if article.audio_credit %}<span class="credit">{{ article.audio_credit }}</span>{% endif %}
+      </div>
+    {% endif %}
+    {% include "components/facts.html" %}
+    {% include "components/gallery.html" %}
+  </div>
+  <aside class="detail__aside">
+    {% if article.regions.exists %}
+      <div class="panel"><h2>{% translate "Where" %}</h2>
+        <ul class="chips">{% for r in article.regions.all %}<li><a class="chip chip--accent" href="{{ r.get_absolute_url }}"><svg aria-hidden="true"><use href="#i-pin"/></svg>{{ r.title }}</a></li>{% endfor %}</ul>
+      </div>
+    {% endif %}
+    {% if related %}
+      <div class="panel"><h2>{% translate "Read also" %}</h2>
+        <ul class="chips" style="display:grid">{% for r in related %}<li><a class="arrow-link" href="{{ r.get_absolute_url }}">{{ r.title }}</a></li>{% endfor %}</ul>
+      </div>
+    {% endif %}
+    <a class="btn btn--outline" href="{{ article.category.get_absolute_url }}">{{ article.category.title }}</a>
+  </aside>
+</div>
+{% endblock %}

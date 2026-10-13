@@ -55,6 +55,16 @@ docker compose exec web python manage.py createsuperuser
 
 Код смонтирован в контейнер, `runserver` перезапускается при изменениях.
 
+### Наполнение
+
+```bash
+docker compose exec web python manage.py seed_content     # области, города, достопримечательности, категории, викторина
+docker compose exec web python manage.py fetch_photos     # обложки со свободной лицензией из Wikimedia Commons
+docker compose exec web python manage.py compilemessages  # переводы интерфейса
+```
+
+Обе команды наполнения можно запускать повторно: они не дублируют записи и не перезаписывают то, что уже изменено в админке.
+
 ### Частые команды
 
 ```bash
@@ -78,6 +88,14 @@ docker compose exec web python manage.py compilemessages
 | `ADMIN_URL` | Адрес админки (в production — нестандартный) |
 | `POSTGRES_*` | Доступ к базе |
 | `GUNICORN_WORKERS` | Число воркеров в production |
+
+## Карта
+
+SVG-карта генерируется скриптом из открытых границ (geoBoundaries / OpenStreetMap, ODbL):
+
+```bash
+python3 tools/build_map.py tools/geo app/templates/svg/map_kyrgyzstan.html app/apps/discover/map_projection.py app/static/img/sections/discover.svg
+```
 
 ## Многоязычность
 

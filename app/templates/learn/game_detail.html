@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static seo_tags %}
+{% block seo %}{% seo_meta game %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=game.title lead=game.summary eyebrow=_("Game") parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container" style="max-width: 1000px">
+    {% if game.instructions %}<p class="lead" style="margin-bottom: 24px">{{ game.instructions }}</p>{% endif %}
+    {% if module == "quiz" %}
+      {% include "components/quiz.html" with quiz_id="game" %}
+    {% else %}
+      <div class="quiz" data-module="{{ module }}" data-payload="game-payload" data-success="{{ game.success_text|default:_('Well done!') }}">
+        {% if module == "map-guess" %}{% include "svg/map_kyrgyzstan.html" with map=None %}{% endif %}
+        <noscript>{% translate "This game needs JavaScript enabled." %}</noscript>
+      </div>
+      {{ payload|json_script:"game-payload" }}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,100 @@
+/* Интерактивная карта Кыргызстана */
+.kg-map { position: relative; }
+.kg-map__svg { width: 100%; height: auto; overflow: visible; }
+
+.kg-map__region path {
+  fill: var(--region-fill, #cfe9e6);
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transition: fill var(--fast) var(--ease), transform .25s var(--ease), filter .25s var(--ease);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* Каждая область — свой оттенок, чтобы границы читались без подписи */
+.kg-map__region[data-region="chuy"]        { --region-fill: #b9e1dc; }
+.kg-map__region[data-region="talas"]       { --region-fill: #cde9c9; }
+.kg-map__region[data-region="issyk-kul"]   { --region-fill: #a9d6e5; }
+.kg-map__region[data-region="naryn"]       { --region-fill: #d6e6c3; }
+.kg-map__region[data-region="jalal-abad"]  { --region-fill: #f3dcb3; }
+.kg-map__region[data-region="osh-region"]  { --region-fill: #f0cfb8; }
+.kg-map__region[data-region="batken"]      { --region-fill: #e9c7c2; }
+
+.kg-map__region:hover path,
+.kg-map__region:focus-visible path,
+.kg-map__region.is-active path {
+  fill: var(--discover);
+  filter: drop-shadow(0 8px 14px rgba(8, 120, 130, .35));
+}
+.kg-map__region:focus-visible { outline: none; }
+
+.kg-map__region--city path { fill: var(--red); stroke-width: 1.5; }
+.kg-map__city-dot {
+  fill: var(--red);
+  stroke: #fff;
+  stroke-width: 3;
+  transition: r var(--fast) var(--ease);
+}
+.kg-map__region--city:hover .kg-map__city-dot,
+.kg-map__region--city:focus-visible .kg-map__city-dot,
+.kg-map__region--city.is-active .kg-map__city-dot { r: 13; fill: var(--ink); }
+.kg-map__region--city:hover path,
+.kg-map__region--city:focus-visible path { fill: var(--ink); filter: none; }
+
+.kg-map__pin { fill: var(--sun); stroke: var(--ink); stroke-width: 2; pointer-events: none; }
+
+.kg-map__tip {
+  position: absolute;
+  z-index: 5;
+  min-width: 180px;
+  max-width: 260px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+  box-shadow: var(--shadow-l);
+  font-size: .9rem;
+  line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 14px)) scale(.96);
+  transition: opacity var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+.kg-map__tip.is-visible { opacity: 1; transform: translate(-50%, calc(-100% - 18px)); }
+.kg-map__tip strong { display: block; font-family: var(--display); font-size: 1rem; }
+.kg-map__tip span { color: #b9c0d3; }
+
+/* Нижняя карточка на сенсорных экранах */
+.kg-map__sheet {
+  display: none;
+  margin-top: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.kg-map__sheet.is-visible { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.kg-map__sheet strong { font-family: var(--display); font-size: 1.15rem; }
+
+.kg-map__legend { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 18px; font-size: .9rem; color: var(--muted); }
+.kg-map__legend span { display: inline-flex; align-items: center; gap: 8px; }
+.kg-map__legend i { width: 14px; height: 14px; border-radius: 50%; }
+.kg-map__credit { margin-top: 10px; font-size: .75rem; color: var(--muted); }
+
+/* Список областей рядом с картой — то же самое для клавиатуры и читалок */
+.region-list { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin: 0; padding: 0; list-style: none; }
+.region-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-s);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--fast) var(--ease), background-color var(--fast) var(--ease);
+}
+.region-list a:hover, .region-list a.is-active { transform: translateY(-2px); background: var(--discover-soft); }
+.region-list small { font-weight: 400; color: var(--muted); }

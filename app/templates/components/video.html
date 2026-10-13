@@ -1,0 +1,7 @@
+{% load i18n %}
+{# Видео YouTube: плеер грузится только после нажатия, с домена youtube-nocookie #}
+{% if url %}
+<div class="video" data-module="video" data-url="{{ url }}">
+  <button class="video__play" type="button"><span><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="visually-hidden">{% translate "Play video" %}</span></button>
+</div>
+{% endif %}

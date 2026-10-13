@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta category description=category.description %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=category.title lead=category.description image=category.cover image_alt=category.cover_alt credit=category.cover_credit parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    <nav aria-label="{% translate 'Topics' %}" style="margin-bottom: 32px">
+      <ul class="chips">
+        {% for c in categories %}<li><a class="chip" href="{{ c.get_absolute_url }}" {% if c.pk == category.pk %}aria-current="page"{% endif %}>{{ c.title }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+    {% if articles %}
+      <div class="grid">{% for article in articles %}{% include "components/card.html" with obj=article kicker=article.subtitle i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta quiz %}{% endblock %}
+{% block content %}{% url "learn:quizzes" as quizzes_url %}
+{% include "components/page_hero.html" with title=quiz.title lead=quiz.summary eyebrow=quiz.get_topic_display parent_url=section.get_absolute_url parent_label=section.title sub_url=quizzes_url sub_label=_("Quizzes") %}
+<section class="section">
+  <div class="container" style="max-width: 920px">
+    {% if payload.questions %}{% include "components/quiz.html" with quiz_id=quiz.slug %}
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% if more %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>{% translate "More quizzes" %}</h2></div>
+    <div class="grid">{% for q in more %}{% include "components/card.html" with obj=q kicker=q.get_topic_display badge=q.get_difficulty_display art=section.art i=forloop.counter0 %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.base.choices import Difficulty
@@ -33,6 +34,9 @@ class Quiz(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'викторина'
         verbose_name_plural = 'викторины'
+
+    def get_absolute_url(self):
+        return reverse('learn:quiz', kwargs={'slug': self.slug})
 
 
 class Question(models.Model):
@@ -120,6 +124,9 @@ class WordTopic(ContentModel):
         verbose_name = 'тема слов'
         verbose_name_plural = 'кыргызский язык: темы'
 
+    def get_absolute_url(self):
+        return reverse('learn:words', kwargs={'slug': self.slug})
+
 
 class Word(models.Model):
     topic = models.ForeignKey(WordTopic, verbose_name='тема', on_delete=models.CASCADE, related_name='words')
@@ -187,6 +194,9 @@ class Game(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'игра'
         verbose_name_plural = 'игры'
+
+    def get_absolute_url(self):
+        return reverse(f'{self.section.key}:game', kwargs={'slug': self.slug})
 
     def clean(self):
         allowed = self.ENGINE_SOURCES.get(self.engine, set())

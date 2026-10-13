@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta title=kind_label %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=kind_label art=section.art parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    <nav aria-label="{% translate 'Filter' %}" style="margin-bottom: 32px">
+      <ul class="chips">{% for k, label, url_name in kinds %}{% url url_name as u %}<li><a class="chip" href="{{ u }}" {% if k == kind %}aria-current="page"{% endif %}>{{ label }}</a></li>{% endfor %}</ul>
+    </nav>
+    {% if activities %}<div class="grid">{% for a in activities %}{% include "practice/_card.html" with obj=a i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

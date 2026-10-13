@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -32,6 +33,9 @@ class Region(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'область / город'
         verbose_name_plural = 'области и города'
+
+    def get_absolute_url(self):
+        return reverse('discover:region', kwargs={'slug': self.slug})
 
 
 class Place(ContentModel):
@@ -69,3 +73,6 @@ class Place(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'достопримечательность'
         verbose_name_plural = 'достопримечательности'
+
+    def get_absolute_url(self):
+        return reverse('discover:place', kwargs={'slug': self.slug})

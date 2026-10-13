@@ -62,6 +62,23 @@ class HomeFeatured(models.Model):
                 return obj
         return None
 
+    @property
+    def kicker(self):
+        """Надпись над заголовком карточки: плашка из админки или рубрика материала."""
+        if self.label:
+            return self.label
+        target = self.target
+        if self.article_id:
+            return target.category.title
+        if self.place_id:
+            return target.region.title
+        return target._meta.verbose_name.capitalize() if target else ''
+
+    @property
+    def badge(self):
+        target = self.target
+        return target.get_kind_display() if hasattr(target, 'get_kind_display') else ''
+
     def clean(self):
         filled = [f for f in FEATURED_TARGETS if getattr(self, f'{f}_id')]
         if len(filled) != 1:

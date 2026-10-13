@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta region %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=region.title lead=region.summary eyebrow=region.get_kind_display image=region.cover image_alt=region.cover_alt credit=region.cover_credit parent_url=section.get_absolute_url parent_label=section.title %}
+
+<div class="container detail">
+  <div class="detail__main">
+    {% if region.body %}<div class="prose">{{ region.body|safe }}</div>{% endif %}
+    {% if region.geography %}<section class="block prose"><h2>{% translate "Geography" %}</h2>{{ region.geography|safe }}</section>{% endif %}
+    {% if region.nature %}<section class="block prose"><h2>{% translate "Mountains, lakes and nature" %}</h2>{{ region.nature|safe }}</section>{% endif %}
+
+    <section class="block">
+      <h2>{% translate "Landmarks" %}</h2>
+      {% if places %}
+        <div class="grid">{% for place in places %}{% include "components/card.html" with obj=place badge=place.get_kind_display art="sections/discover.svg" i=forloop.counter0 %}{% endfor %}</div>
+      {% else %}{% include "components/empty.html" %}{% endif %}
+    </section>
+
+    {% if region.culture %}<section class="block prose"><h2>{% translate "Culture and local traditions" %}</h2>{{ region.culture|safe }}</section>{% endif %}
+    {% include "components/facts.html" %}
+    {% include "components/gallery.html" %}
+    {% if articles %}
+      <section class="block"><h2>{% translate "Read more" %}</h2>
+        <div class="grid">{% for article in articles %}{% include "components/card.html" with obj=article kicker=article.category.title i=forloop.counter0 %}{% endfor %}</div>
+      </section>
+    {% endif %}
+  </div>
+
+  <aside class="detail__aside">
+    <div class="panel">
+      <dl class="stats">
+        {% if region.capital %}<div><dt>{% translate "Administrative centre" %}</dt><dd>{{ region.capital }}</dd></div>{% endif %}
+        {% if region.area_km2 %}<div><dt>{% translate "Area" %}</dt><dd>{{ region.area_km2 }} {% translate "km²" %}</dd></div>{% endif %}
+        {% if region.population %}<div><dt>{% translate "Population" %}{% if region.population_year %} ({{ region.population_year }}){% endif %}</dt><dd>{{ region.population }}</dd></div>{% endif %}
+        <div><dt>{% translate "Landmarks on the site" %}</dt><dd>{{ places|length }}</dd></div>
+      </dl>
+    </div>
+    <div class="panel" data-active-region="{{ region.map_id }}">
+      {% include "components/map.html" %}
+    </div>
+    <a class="btn btn--outline" href="{% url 'discover:index' %}">{% translate "Back to the map" %}</a>
+  </aside>
+</div>
+{% endblock %}

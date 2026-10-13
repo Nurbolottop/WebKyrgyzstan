@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta place %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=place.title lead=place.summary eyebrow=place.get_kind_display image=place.cover image_alt=place.cover_alt credit=place.cover_credit parent_url=section.get_absolute_url parent_label=section.title sub_url=place.region.get_absolute_url sub_label=place.region.title %}
+<div class="container detail">
+  <div class="detail__main">
+    {% if place.body %}<div class="prose">{{ place.body|safe }}</div>{% else %}{% include "components/empty.html" %}{% endif %}
+    {% include "components/facts.html" %}
+    {% include "components/gallery.html" %}
+    {% if nearby %}
+      <section class="block"><h2>{% blocktranslate with region=place.region.title %}More in {{ region }}{% endblocktranslate %}</h2>
+        <div class="grid">{% for p in nearby %}{% include "components/card.html" with obj=p badge=p.get_kind_display i=forloop.counter0 %}{% endfor %}</div>
+      </section>
+    {% endif %}
+  </div>
+  <aside class="detail__aside">
+    {% if place.key_value %}<div class="big-number"><strong>{{ place.key_value }}</strong>{{ place.key_label }}</div>{% endif %}
+    <div class="panel">
+      <dl class="stats">
+        <div><dt>{% translate "Region" %}</dt><dd><a href="{{ place.region.get_absolute_url }}">{{ place.region.title }}</a></dd></div>
+        <div><dt>{% translate "Type" %}</dt><dd>{{ place.get_kind_display }}</dd></div>
+      </dl>
+    </div>
+    <a class="btn btn--outline" href="{% url 'discover:places' %}">{% translate "All landmarks" %}</a>
+  </aside>
+</div>
+{% endblock %}

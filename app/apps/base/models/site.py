@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from apps.base.choices import SectionKey
 from apps.base.validators import IMAGE_VALIDATORS
@@ -63,3 +64,11 @@ class Section(CoverMixin, models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(f'{self.key}:index')
+
+    @property
+    def art(self):
+        """Иллюстрация раздела из static/img/sections/."""
+        return f'sections/{self.key}.svg'

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta section %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=section.title lead=section.description image=section.cover image_alt=section.cover_alt credit=section.cover_credit %}
+
+<section class="section" aria-labelledby="map-h">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="map-h">{% translate "Map of Kyrgyzstan" %}</h2>
+      <p>{% translate "Click a region on the map or choose it from the list." %}</p>
+    </div>
+    {% include "components/map.html" %}
+    <p class="kg-map__credit">{% translate "Boundaries" %}: geoBoundaries, © OpenStreetMap contributors (ODbL)</p>
+    <ul class="region-list" style="margin-top: 32px">
+      {% for region in map.regions %}
+        <li><a href="{{ region.get_absolute_url }}" data-region-link="{{ region.map_id }}">{{ region.title }}{% if region.capital %}<small>{{ region.capital }}</small>{% endif %}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="places-h">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="places-h">{% translate "Landmarks" %}</h2>
+      <a class="arrow-link" href="{% url 'discover:places' %}">{% translate "All landmarks" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    {% if places %}
+      <div class="grid">{% for place in places %}{% include "components/card.html" with obj=place kicker=place.region.title badge=place.get_kind_display art="sections/discover.svg" i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+
+{% if articles %}
+<section class="section" aria-labelledby="art-h">
+  <div class="container">
+    <div class="section-head"><h2 id="art-h">{% translate "About nature" %}</h2></div>
+    <div class="grid">{% for article in articles %}{% include "components/card.html" with obj=article kicker=article.category.title art="sections/discover.svg" i=forloop.counter0 %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

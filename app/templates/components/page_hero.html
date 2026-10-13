@@ -1,0 +1,33 @@
+{% load site_tags static %}
+{# Шапка внутренней страницы. Параметры: title, lead, eyebrow, image, image_alt, credit, parent_url/parent_label, sub_url/sub_label — хлебные крошки, art #}
+<section class="page-hero">
+  {% include "svg/ornament.html" with class="page-hero__decor" uid="hero" %}
+  <div class="container">
+    {% if parent_url %}
+      <nav class="breadcrumbs" aria-label="{{ _('Breadcrumbs') }}">
+        <ol>
+          <li><a href="{% url 'base:home' %}">{{ _('Home') }}</a></li>
+          <li><a href="{{ parent_url }}">{{ parent_label }}</a></li>
+          {% if sub_url %}<li><a href="{{ sub_url }}">{{ sub_label }}</a></li>{% endif %}
+          <li><span aria-current="page">{{ title }}</span></li>
+        </ol>
+      </nav>
+    {% endif %}
+    <div class="page-hero__inner{% if image or art %} page-hero__inner--media{% endif %}">
+      <div>
+        {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+        <h1>{{ title }}</h1>
+        {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+        {% if actions %}<div class="page-hero__actions">{{ actions }}</div>{% endif %}
+      </div>
+      {% if image %}
+        <div>
+          <div class="page-hero__media">{% picture image image_alt "(min-width: 900px) 45vw, 100vw" "" True %}</div>
+          {% if credit %}<p class="page-hero__credit">{{ credit }}</p>{% endif %}
+        </div>
+      {% elif art %}
+        <div aria-hidden="true"><img src="{% static 'img/'|add:art %}" alt="" width="320" height="240" style="width:min(100%,420px);margin-inline:auto"></div>
+      {% endif %}
+    </div>
+  </div>
+</section>

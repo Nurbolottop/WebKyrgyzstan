@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta section %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=section.title lead=section.description image=section.cover image_alt=section.cover_alt credit=section.cover_credit art=section.art %}
+
+{% if games %}
+<section class="section">
+  <div class="container">
+    <div class="grid grid--wide">
+      {% for game in games %}{% include "components/card.html" with obj=game kicker=_("Interactive") badge=_("Play") art=section.art i=forloop.counter0 %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" aria-labelledby="cats-h">
+  <div class="container">
+    <div class="section-head"><h2 id="cats-h">{% translate "Topics" %}</h2></div>
+    {% if categories %}
+      <div class="grid" style="--card-min: 240px">
+        {% for category in categories %}{% include "components/card.html" with obj=category art=section.art i=forloop.counter0 %}{% endfor %}
+      </div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="new-h">
+  <div class="container">
+    <div class="section-head"><h2 id="new-h">{% translate "Materials" %}</h2></div>
+    {% if articles %}
+      <div class="grid">{% for article in articles %}{% include "components/card.html" with obj=article kicker=article.category.title art=section.art i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+
+{% if quizzes %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>{% translate "Quizzes on the topic" %}</h2></div>
+    <div class="grid">{% for quiz in quizzes %}{% include "components/card.html" with obj=quiz badge=quiz.get_difficulty_display art="sections/learn.svg" i=forloop.counter0 %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

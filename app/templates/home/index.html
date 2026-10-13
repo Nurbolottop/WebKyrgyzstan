@@ -1,14 +1,131 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static site_tags %}
+
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/pages/home.css' %}">{% endblock %}
 
 {% block content %}
-  <h1>Web Kyrgyzstan</h1>
-  <p>{% translate "The site is under construction." %}</p>
+{# ========== Hero ========== #}
+<section class="hero">
+  {% include "svg/ornament.html" with class="hero__decor" uid="home" %}
+  <div class="container hero__inner">
+    <div>
+      <p class="eyebrow">Kids Web Kyrgyzstan</p>
+      <h1>
+        {% if site.hero_title %}{{ site.hero_title }}{% else %}{% blocktranslate %}Discover <em>amazing</em> Kyrgyzstan!{% endblocktranslate %}{% endif %}
+      </h1>
+      <p class="lead">
+        {% if site.hero_subtitle %}{{ site.hero_subtitle }}{% else %}{% translate "Explore the nature, history, culture and traditions of Kyrgyzstan, take quizzes, play games and try interactive tasks." %}{% endif %}
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--accent" href="{% url 'discover:index' %}">
+          {% if site.hero_cta_label %}{{ site.hero_cta_label }}{% else %}{% translate "Start exploring" %}{% endif %}
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn--outline" href="{% url 'learn:index' %}">{% translate "Learn and play" %}</a>
+      </div>
+      <ul class="hero__stats chips" aria-label="{% translate 'Kyrgyzstan in numbers' %}">
+        <li class="chip"><strong>7</strong> {% translate "regions" %}</li>
+        <li class="chip"><strong>2</strong> {% translate "cities of republican significance" %}</li>
+        <li class="chip"><strong>3</strong> {% translate "languages" %}</li>
+      </ul>
+    </div>
 
-  <nav aria-label="{% translate 'Language' %}">
-    {% get_available_languages as languages %}
-    {% for code, name in languages %}
-      {% language code %}<a href="{% url 'base:home' %}" hreflang="{{ code }}" lang="{{ code }}">{{ name }}</a>{% endlanguage %}
-    {% endfor %}
-  </nav>
+    <div class="hero__visual">
+      <div class="hero__window">
+        {% if site.hero_image %}
+          {% picture site.hero_image site.hero_image_alt "(min-width: 1000px) 50vw, 100vw" "" True %}
+        {% else %}
+          {% include "svg/hero_scene.html" %}
+        {% endif %}
+      </div>
+      {% if site.hero_image and site.hero_image_credit %}<p class="hero__credit">{{ site.hero_image_credit }}</p>{% endif %}
+      <div class="hero__float hero__float--fact" aria-hidden="true">
+        <svg class="icon" style="color: var(--discover)"><use href="#i-pin"/></svg>
+        <div><strong>{% translate "Issyk-Kul" %}</strong>{% translate "one of the largest mountain lakes in the world" %}</div>
+      </div>
+      <div class="hero__float hero__float--quiz" aria-hidden="true">
+        <svg class="icon" style="color: var(--learn)"><use href="#i-question"/></svg>
+        <div><strong>{% translate "Quizzes" %}</strong>{% translate "test yourself" %}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ========== Пять направлений ========== #}
+<section class="section" aria-labelledby="directions-title">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{% translate "Five directions" %}</p>
+        <h2 id="directions-title">{% translate "Where shall we start?" %}</h2>
+      </div>
+      <p>{% translate "Choose a direction: travel across the map, get to know traditions, play, cook or meet the people of modern Kyrgyzstan." %}</p>
+    </div>
+    <div class="directions">
+      {% for item in nav_sections %}
+        <article class="direction direction--{{ item.key }} reveal" data-section="{{ item.key }}" style="--i: {{ forloop.counter0 }}">
+          {% if item.cover %}<div class="direction__photo">{% picture item.cover item.cover_alt "50vw" %}</div>{% endif %}
+          <span class="direction__num">0{{ forloop.counter }}</span>
+          <h3><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+          {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+          <span class="direction__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+          <div class="direction__art" aria-hidden="true"><img src="{% static 'img/'|add:item.art %}" alt="" width="320" height="240" loading="lazy"></div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ========== Карта ========== #}
+<section class="section" data-section="discover" aria-labelledby="map-title">
+  <div class="container">
+    <div class="map-teaser">
+      <div>
+        <p class="eyebrow">{% translate "Explore Kyrgyzstan" %}</p>
+        <h2 id="map-title">{% translate "Seven regions and two special cities" %}</h2>
+        <p class="lead">{% translate "Hover over a region to see its name, then click to learn about its mountains, lakes and sights." %}</p>
+        <a class="btn btn--section" href="{% url 'discover:index' %}">{% translate "Open the map" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      {% include "components/map.html" %}
+    </div>
+  </div>
+</section>
+
+{# ========== Интересные материалы ========== #}
+{% if featured %}
+<section class="section" aria-labelledby="featured-title">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{% translate "Interesting" %}</p>
+        <h2 id="featured-title">{% translate "Interesting materials" %}</h2>
+      </div>
+    </div>
+    <div class="grid">
+      {% for item in featured %}
+        {% with obj=item.target %}
+          {% include "components/card.html" with obj=obj kicker=item.kicker badge=item.badge art="sections/discover.svg" i=forloop.counter0 %}
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ========== Мини-викторина ========== #}
+{% if mini_quiz %}
+<section class="section" data-section="learn" aria-labelledby="mini-quiz-title">
+  <div class="container">
+    <div class="mini-quiz">
+      <div>
+        <p class="eyebrow">{% translate "Quick question" %}</p>
+        <h2 id="mini-quiz-title">{% translate "Test yourself!" %}</h2>
+        <p class="lead" style="margin-top: 16px">{% translate "Choose an answer and find out whether you are right." %}</p>
+        <a class="arrow-link" style="margin-top: 24px" href="{{ mini_quiz.quiz.get_absolute_url }}">{% translate "Take the whole quiz" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      {% include "components/quiz.html" with payload=mini_quiz_payload quiz_id="mini" mini=True %}
+    </div>
+  </div>
+</section>
+{% endif %}
 {% endblock %}

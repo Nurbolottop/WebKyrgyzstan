@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% translate "Mini-games" as t %}{% seo_meta title=t %}{% endblock %}
+{% block content %}
+{% translate "Mini-games" as t %}{% translate "Educational games that work right in the browser." as lead %}
+{% include "components/page_hero.html" with title=t lead=lead art=section.art parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    {% if games %}<div class="grid">{% for game in games %}{% include "components/card.html" with obj=game kicker=game.section.title badge=game.get_difficulty_display art="sections/learn.svg" i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

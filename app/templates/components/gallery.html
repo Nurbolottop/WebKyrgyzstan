@@ -1,0 +1,21 @@
+{% load i18n site_tags %}
+{% if gallery %}
+<section class="block" data-module="gallery">
+  <h2>{% translate "Photo gallery" %}</h2>
+  <div class="gallery">
+    {% for photo in gallery %}
+      <figure>
+        <button type="button" data-full="{% image_url photo.image 1600 %}" data-caption="{{ photo.caption|default:photo.alt }} · {{ photo.credit }}">
+          {% picture photo.image photo.alt "(min-width: 1000px) 280px, 50vw" %}
+        </button>
+        <figcaption>{{ photo.caption|default:photo.alt }}<br><span class="credit">{{ photo.credit }}</span></figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+  <dialog class="lightbox" aria-label="{% translate 'Photo' %}">
+    <button class="lightbox__close" type="button" aria-label="{% translate 'Close' %}">×</button>
+    <img src="" alt="">
+    <p></p>
+  </dialog>
+</section>
+{% endif %}

@@ -1,0 +1,18 @@
+{% load i18n %}
+{# Викторина. Параметры: payload (dict с questions), quiz_id, mini — без экрана итогов #}
+<div class="quiz" data-module="quiz" data-payload="quiz-{{ quiz_id }}" {% if mini %}data-mini{% endif %}>
+  <ol class="quiz__static">
+    {% for q in payload.questions %}
+      <li>
+        <p class="quiz__question">{{ q.text }}</p>
+        <ul>{% for a in q.answers %}<li>{{ a.text }}</li>{% endfor %}</ul>
+        <details><summary>{% translate "Show the answer" %}</summary>
+          {% for a in q.answers %}{% if a.correct %}<p><strong>{{ a.text }}</strong></p>{% endif %}{% endfor %}
+          {% if q.explanation %}<p>{{ q.explanation }}</p>{% endif %}
+        </details>
+      </li>
+    {% endfor %}
+  </ol>
+  {% with element_id="quiz-"|add:quiz_id %}{{ payload|json_script:element_id }}{% endwith %}
+  <script type="application/json" class="quiz__i18n">{"question": "{{ _("Question")|escapejs }}", "of": "{{ _("of")|escapejs }}", "correct": "{{ _("Correct!")|escapejs }}", "wrong": "{{ _("Not quite")|escapejs }}", "rightAnswer": "{{ _("The right answer")|escapejs }}", "next": "{{ _("Next")|escapejs }}", "finish": "{{ _("See the result")|escapejs }}", "result": "{{ _("Your result")|escapejs }}", "again": "{{ _("Try again")|escapejs }}", "great": "{{ _("Excellent! You know Kyrgyzstan very well.")|escapejs }}", "good": "{{ _("Good job! A little more and you will know everything.")|escapejs }}", "try": "{{ _("Keep exploring the site and try again!")|escapejs }}"}</script>
+</div>

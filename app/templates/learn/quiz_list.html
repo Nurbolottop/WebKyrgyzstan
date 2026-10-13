@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% translate "Quizzes about Kyrgyzstan" as t %}{% seo_meta title=t %}{% endblock %}
+{% block content %}
+{% translate "Quizzes" as t %}{% translate "Choose a quiz, answer the questions and find out how well you know Kyrgyzstan." as lead %}
+{% include "components/page_hero.html" with title=t lead=lead art=section.art parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    <nav aria-label="{% translate 'Filter' %}" style="margin-bottom: 32px">
+      <ul class="chips">
+        <li><a class="chip" href="{% url 'learn:quizzes' %}" {% if not current_topic %}aria-current="page"{% endif %}>{% translate "All" %}</a></li>
+        {% for value, label in topics %}<li><a class="chip" href="?topic={{ value }}" {% if current_topic == value %}aria-current="page"{% endif %}>{{ label }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+    {% if quizzes %}<div class="grid">{% for quiz in quizzes %}{% include "components/card.html" with obj=quiz kicker=quiz.get_topic_display badge=quiz.get_difficulty_display art=section.art i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

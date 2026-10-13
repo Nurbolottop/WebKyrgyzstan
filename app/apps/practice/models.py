@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.base.choices import Difficulty
@@ -34,6 +35,11 @@ class Activity(ContentModel):
     class Meta(ContentModel.Meta):
         verbose_name = 'практика'
         verbose_name_plural = 'практика'
+
+    URL_NAMES = {'recipe': 'practice:recipe', 'masterclass': 'practice:masterclass', 'task': 'practice:task'}
+
+    def get_absolute_url(self):
+        return reverse(self.URL_NAMES[self.kind], kwargs={'slug': self.slug})
 
     def clean(self):
         if self.kind == self.Kind.RECIPE and not self.safety_notes:

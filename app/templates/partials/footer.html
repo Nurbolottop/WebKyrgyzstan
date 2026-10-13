@@ -1,0 +1,28 @@
+{% load i18n %}
+<footer class="site-footer">
+  {% include "svg/ornament.html" with class="site-footer__decor" uid="footer" %}
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="logo" href="{% url 'base:home' %}">{% include "svg/logo_mark.html" %}<span class="logo__text">Web Kyrgyzstan<small>Kids Web Kyrgyzstan</small></span></a>
+        <p class="site-footer__about">
+          {% if site.about %}{{ site.about }}{% else %}{% translate "An interactive educational website about Kyrgyzstan for children and teenagers: nature, history, culture, traditions and modern life." %}{% endif %}
+        </p>
+      </div>
+      <div>
+        <h2>{% translate "Sections" %}</h2>
+        <ul>
+          {% for item in nav_sections %}<li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h2>{% translate "Language" %}</h2>
+        {% include "partials/lang_switcher.html" %}
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© {% now "Y" %} {% if site.copyright %}{{ site.copyright }}{% else %}Web Kyrgyzstan{% endif %}</span>
+      <span>{% translate "Map data" %}: © OpenStreetMap contributors, geoBoundaries (ODbL)</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n seo_tags site_tags %}
+{% block seo %}{% seo_meta topic %}{% endblock %}
+{% block content %}
+{% url 'learn:word_topics' as topics_url %}
+{% include "components/page_hero.html" with title=topic.title lead=topic.summary parent_url=section.get_absolute_url parent_label=section.title sub_url=topics_url sub_label=_("Kyrgyz language") %}
+<section class="section">
+  <div class="container">
+    {% if words %}
+      <p class="muted" style="margin-bottom: 24px">{% translate "Tap a card to see the translation." %}</p>
+      <ul class="flashcards" data-module="flashcards">
+        {% for word in words %}
+          <li class="flashcard reveal" style="--i: {{ forloop.counter0 }}">
+            <button type="button" aria-pressed="false">
+              <span class="flashcard__face">
+                {% if word.image %}{% picture word.image word.image_alt "220px" %}{% endif %}
+                <span class="flashcard__word" lang="ky">{{ word.kyrgyz }}</span>
+                {% if word.transliteration %}<small>[{{ word.transliteration }}]</small>{% endif %}
+              </span>
+              <span class="flashcard__face flashcard__face--back">
+                <span class="flashcard__word">{{ word.translation }}</span>
+                <small lang="ky">{{ word.kyrgyz }}</small>
+              </span>
+            </button>
+            {% if word.audio %}<button class="chip flashcard__audio" type="button" data-audio="{{ word.audio.url }}"><svg aria-hidden="true"><use href="#i-sound"/></svg>{% translate "Listen" %}</button>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+    {% if games %}
+      <div style="margin-top: 48px" class="grid">{% for game in games %}{% include "components/card.html" with obj=game kicker=_("Check yourself") art=section.art %}{% endfor %}</div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

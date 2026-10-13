@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% seo_meta section %}{% endblock %}
+{% block content %}
+{% include "components/page_hero.html" with title=section.title lead=section.description image=section.cover image_alt=section.cover_alt credit=section.cover_credit art=section.art %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid" style="--card-min: 230px">
+      {% url 'learn:quizzes' as u1 %}{% url 'learn:riddles' as u2 %}{% url 'learn:rebuses' as u3 %}{% url 'learn:word_topics' as u4 %}{% url 'learn:games' as u5 %}
+      {% include "learn/_tile.html" with url=u1 title=_("Quizzes") text=_("Geography, history, culture and nature") i=0 %}
+      {% include "learn/_tile.html" with url=u2 title=_("Riddles") text=_("Folk riddles about Kyrgyzstan") i=1 %}
+      {% include "learn/_tile.html" with url=u3 title=_("Rebuses") text=_("Guess the word from pictures") i=2 %}
+      {% include "learn/_tile.html" with url=u4 title=_("Kyrgyz language") text=_("Words, translations and pronunciation") i=3 %}
+      {% include "learn/_tile.html" with url=u5 title=_("Mini-games") text=_("Play right in the browser") i=4 %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="quiz-h">
+  <div class="container">
+    <div class="section-head"><h2 id="quiz-h">{% translate "Quizzes" %}</h2><a class="arrow-link" href="{% url 'learn:quizzes' %}">{% translate "All quizzes" %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    {% if quizzes %}<div class="grid">{% for quiz in quizzes %}{% include "components/card.html" with obj=quiz kicker=quiz.get_topic_display badge=quiz.get_difficulty_display art=section.art i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+
+{% if games %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>{% translate "Mini-games" %}</h2></div>
+    <div class="grid">{% for game in games %}{% include "components/card.html" with obj=game badge=game.get_difficulty_display art=section.art i=forloop.counter0 %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,177 @@
+/* ========== Hero ========== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(32px, 6vw, 72px) clamp(56px, 8vw, 104px);
+}
+.hero__inner { display: grid; gap: clamp(36px, 5vw, 64px); align-items: center; }
+@media (min-width: 1000px) { .hero__inner { grid-template-columns: 1.05fr .95fr; } }
+
+.hero h1 { max-width: 13ch; }
+.hero h1 em {
+  position: relative;
+  font-style: normal;
+  color: var(--red);
+  white-space: nowrap;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.06em;
+  height: .2em;
+  border-radius: 1em;
+  background: var(--sun);
+  opacity: .75;
+  z-index: -1;
+}
+.hero .lead { margin-top: 24px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.hero__stats .chip { padding: 8px 14px; background: var(--surface); box-shadow: var(--shadow-s); }
+.hero__stats strong { font-family: var(--display); }
+
+.hero__visual { position: relative; }
+.hero__window {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+  border-radius: 200px 200px var(--radius-l) var(--radius-l);   /* арка — силуэт юрты */
+  background: linear-gradient(180deg, #bfe3f2 0%, #e8f4f6 60%, #f6efe2 100%);
+  box-shadow: var(--shadow-l);
+}
+.hero__window img { width: 100%; height: 100%; object-fit: cover; }
+.hero__scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__sun { transform-box: fill-box; transform-origin: center; animation: spin-slow 60s linear infinite; }
+.hero__credit { margin-top: 10px; font-size: .75rem; color: var(--muted); text-align: right; }
+
+.hero__float {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: .9rem;
+  line-height: 1.35;
+  animation: float 6s var(--ease) infinite;
+}
+.hero__float strong { display: block; font-family: var(--display); font-size: 1rem; }
+.hero__float .icon { flex-shrink: 0; width: 42px; height: 42px; }
+.hero__float--fact { left: -24px; bottom: 18%; max-width: 250px; }
+.hero__float--quiz { right: -12px; top: 12%; animation-delay: -3s; }
+@media (max-width: 640px) {
+  .hero__float--fact { left: 8px; bottom: 10px; }
+  .hero__float--quiz { right: 8px; top: 10px; }
+}
+
+.hero__decor {
+  position: absolute;
+  top: -120px;
+  right: -160px;
+  width: 520px;
+  color: var(--sun);
+  opacity: .14;
+  pointer-events: none;
+}
+
+/* ========== Пять направлений ========== */
+.directions {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.direction {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  padding: clamp(24px, 3vw, 36px);
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--accent-soft);
+  isolation: isolate;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.direction:hover { transform: translateY(-6px); box-shadow: var(--shadow-l); }
+.direction__num { font-family: var(--display); font-weight: 800; font-size: .9rem; color: var(--accent-ink); }
+.direction h3 { margin-top: 10px; font-size: clamp(1.5rem, 2.6vw, 2.1rem); max-width: 12ch; }
+.direction h3 a { text-decoration: none; }
+.direction h3 a::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+.direction p { margin-top: 12px; max-width: 34ch; color: var(--ink-2); font-size: 1rem; }
+.direction__go {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-top: auto;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  transition: transform .35s var(--ease);
+}
+.direction:hover .direction__go { transform: translateX(6px) rotate(-45deg); }
+.direction__go svg { width: 22px; height: 22px; }
+.direction__art {
+  position: absolute;
+  right: -6%;
+  bottom: -6%;
+  z-index: -1;
+  width: 58%;
+  max-width: 340px;
+  transition: transform .6s var(--ease);
+}
+.direction:hover .direction__art { transform: scale(1.05) rotate(-2deg); }
+.direction__art img { width: 100%; height: auto; }
+.direction__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .16;
+}
+.direction__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.direction--discover { grid-column: span 7; grid-row: span 2; min-height: 520px; }
+.direction--discover .direction__art { width: 92%; max-width: 640px; right: -4%; bottom: 4%; }
+.direction--culture { grid-column: span 5; border-radius: 160px 160px var(--radius-l) var(--radius-l); padding-top: 64px; }
+.direction--learn { grid-column: span 5; }
+.direction--practice { grid-column: span 6; }
+.direction--modern { grid-column: span 6; }
+.direction--learn {
+  background:
+    radial-gradient(circle, rgba(232, 162, 0, .22) 2px, transparent 2.5px) 0 0 / 22px 22px,
+    var(--learn-soft);
+}
+@media (max-width: 899px) {
+  .direction { grid-column: 1 / -1 !important; grid-row: auto !important; min-height: 280px; }
+  .direction--discover { min-height: 420px; }
+}
+
+/* ========== Превью карты ========== */
+.map-teaser {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 56px);
+  border-radius: var(--radius-l);
+  background: var(--discover-soft);
+}
+@media (min-width: 1000px) { .map-teaser { grid-template-columns: .8fr 1.2fr; } }
+.map-teaser h2 { max-width: 14ch; }
+.map-teaser .lead { margin-top: 16px; }
+.map-teaser .btn { margin-top: 28px; }
+
+/* ========== Мини-викторина ========== */
+.mini-quiz {
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  padding: clamp(24px, 4vw, 56px);
+  border-radius: var(--radius-l);
+  background: var(--learn-soft);
+}
+@media (min-width: 1000px) { .mini-quiz { grid-template-columns: .7fr 1.3fr; align-items: start; } }
+.mini-quiz .quiz { box-shadow: var(--shadow-s); }
+.mini-quiz__art { width: 160px; margin-top: 24px; }

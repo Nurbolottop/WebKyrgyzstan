@@ -1,0 +1,5 @@
+{% load i18n %}
+<div class="empty">
+  <svg aria-hidden="true"><use href="#i-bulb"/></svg>
+  <p>{% if text %}{{ text }}{% else %}{% translate "Materials will appear here soon." %}{% endif %}</p>
+</div>

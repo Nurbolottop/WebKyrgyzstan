@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n seo_tags %}
+{% block seo %}{% translate "Landmarks of Kyrgyzstan" as t %}{% seo_meta title=t %}{% endblock %}
+{% block content %}
+{% translate "Landmarks of Kyrgyzstan" as t %}{% translate "Lakes, mountains, nature reserves and ancient monuments." as lead %}
+{% include "components/page_hero.html" with title=t lead=lead eyebrow=section.title art="sections/discover.svg" parent_url=section.get_absolute_url parent_label=section.title %}
+<section class="section">
+  <div class="container">
+    <nav aria-label="{% translate 'Filter' %}" style="margin-bottom: 32px">
+      <ul class="chips">
+        <li><a class="chip" href="{% url 'discover:places' %}" {% if not current_kind %}aria-current="page"{% endif %}>{% translate "All" %}</a></li>
+        {% for value, label in kinds %}<li><a class="chip" href="?kind={{ value }}" {% if current_kind == value %}aria-current="page"{% endif %}>{{ label }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+    {% if places %}
+      <div class="grid">{% for place in places %}{% include "components/card.html" with obj=place kicker=place.region.title badge=place.get_kind_display art="sections/discover.svg" i=forloop.counter0 %}{% endfor %}</div>
+    {% else %}{% include "components/empty.html" %}{% endif %}
+  </div>
+</section>
+{% endblock %}

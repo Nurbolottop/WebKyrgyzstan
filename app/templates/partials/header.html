@@ -1,0 +1,49 @@
+{% load i18n %}
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="logo" href="{% url 'base:home' %}" aria-label="{{ site.site_name }} — {% translate 'Home' %}">
+      {% include "svg/logo_mark.html" %}
+      <span class="logo__text">Web Kyrgyzstan<small>Kids Web Kyrgyzstan</small></span>
+    </a>
+
+    <nav class="main-nav" aria-label="{% translate 'Main sections' %}">
+      <ul class="main-nav__list">
+        {% for item in nav_sections %}
+          <li>
+            <a class="main-nav__link" href="{{ item.get_absolute_url }}" style="--dot: var(--{{ item.key }})"
+               {% if section.key == item.key %}aria-current="page"{% endif %}>{{ item.short_title|default:item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% include "partials/lang_switcher.html" %}
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+      <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      <span class="visually-hidden">{% translate "Open menu" %}</span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="{% translate 'Menu' %}" data-menu>
+  <div class="mobile-menu__top">
+    <a class="logo" href="{% url 'base:home' %}">{% include "svg/logo_mark.html" %}<span class="logo__text">Web Kyrgyzstan</span></a>
+    <button class="menu-toggle mobile-menu__close" type="button" data-menu-close>
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+      <span class="visually-hidden">{% translate "Close menu" %}</span>
+    </button>
+  </div>
+  <ul class="mobile-menu__list">
+    {% for item in nav_sections %}
+      <li>
+        <a class="mobile-menu__link" href="{{ item.get_absolute_url }}" style="--tile: var(--{{ item.key }}-soft)"
+           {% if section.key == item.key %}aria-current="page"{% endif %}>
+          {% load static %}<img class="icon" src="{% static 'img/'|add:item.art %}" alt="" width="36" height="36">
+          {{ item.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% include "partials/lang_switcher.html" %}
+</div>

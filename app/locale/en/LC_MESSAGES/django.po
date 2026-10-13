@@ -1,0 +1,681 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-13 10:18+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/articles/apps.py:8
+msgid "Articles"
+msgstr ""
+
+#: apps/articles/models.py:46
+msgid "Article"
+msgstr ""
+
+#: apps/articles/models.py:47
+msgid "Profile"
+msgstr ""
+
+#: apps/articles/models.py:48
+msgid "Profession"
+msgstr ""
+
+#: apps/base/apps.py:8
+msgid "Site"
+msgstr ""
+
+#: apps/base/choices.py:6 apps/discover/apps.py:8
+msgid "Discover Kyrgyzstan"
+msgstr ""
+
+#: apps/base/choices.py:7
+msgid "Culture and Traditions"
+msgstr ""
+
+#: apps/base/choices.py:8
+msgid "Learn and Play"
+msgstr ""
+
+#: apps/base/choices.py:9
+msgid "Try It Yourself"
+msgstr ""
+
+#: apps/base/choices.py:10
+msgid "Modern Kyrgyzstan"
+msgstr ""
+
+#: apps/base/choices.py:14
+msgid "Easy"
+msgstr ""
+
+#: apps/base/choices.py:15
+msgid "Medium"
+msgstr ""
+
+#: apps/base/choices.py:16
+msgid "Hard"
+msgstr ""
+
+#: apps/discover/models.py:13 templates/components/map.html:11
+#: templates/discover/place_detail.html:21
+msgid "Region"
+msgstr ""
+
+#: apps/discover/models.py:14 templates/components/map.html:12
+msgid "City of republican significance"
+msgstr ""
+
+#: apps/discover/models.py:43
+msgid "Lake"
+msgstr ""
+
+#: apps/discover/models.py:44
+msgid "Mountain"
+msgstr ""
+
+#: apps/discover/models.py:45
+msgid "Nature"
+msgstr ""
+
+#: apps/discover/models.py:46
+msgid "Historic site"
+msgstr ""
+
+#: apps/discover/models.py:47
+msgid "City"
+msgstr ""
+
+#: apps/learn/apps.py:8 templates/home/index.html:24
+msgid "Learn and play"
+msgstr ""
+
+#: apps/learn/models.py:12 templates/discover/region_detail.html:10
+msgid "Geography"
+msgstr ""
+
+#: apps/learn/models.py:13
+msgid "History"
+msgstr ""
+
+#: apps/learn/models.py:14
+msgid "Culture"
+msgstr ""
+
+#: apps/learn/models.py:15
+msgid "Nature and animals"
+msgstr ""
+
+#: apps/learn/models.py:16 templates/learn/index.html:14
+#: templates/learn/wordtopic_detail.html:6
+#: templates/learn/wordtopic_list.html:3 templates/learn/wordtopic_list.html:5
+msgid "Kyrgyz language"
+msgstr ""
+
+#: apps/learn/models.py:85
+msgid "Riddle"
+msgstr ""
+
+#: apps/learn/models.py:86
+msgid "Rebus"
+msgstr ""
+
+#: apps/practice/apps.py:8
+msgid "Try it yourself"
+msgstr ""
+
+#: apps/practice/models.py:15
+msgid "Recipe"
+msgstr ""
+
+#: apps/practice/models.py:16
+msgid "Master class"
+msgstr ""
+
+#: apps/practice/models.py:17
+msgid "Creative task"
+msgstr ""
+
+#: templates/404.html:3
+msgid "Page not found"
+msgstr ""
+
+#: templates/404.html:7
+msgid "Oops, this page got lost in the mountains"
+msgstr ""
+
+#: templates/404.html:8
+msgid "Perhaps the address is wrong or the material has been removed."
+msgstr ""
+
+#: templates/404.html:9
+msgid "Go to the home page"
+msgstr ""
+
+#: templates/articles/article_detail.html:12
+#: templates/learn/wordtopic_detail.html:25
+msgid "Listen"
+msgstr ""
+
+#: templates/articles/article_detail.html:22
+msgid "Where"
+msgstr ""
+
+#: templates/articles/article_detail.html:27
+msgid "Read also"
+msgstr ""
+
+#: templates/articles/category.html:8 templates/articles/section_index.html:19
+msgid "Topics"
+msgstr ""
+
+#: templates/articles/section_index.html:11
+msgid "Interactive"
+msgstr ""
+
+#: templates/articles/section_index.html:11
+msgid "Play"
+msgstr ""
+
+#: templates/articles/section_index.html:30
+msgid "Materials"
+msgstr ""
+
+#: templates/articles/section_index.html:40
+msgid "Quizzes on the topic"
+msgstr ""
+
+#: templates/base.html:18
+msgid "Skip to content"
+msgstr ""
+
+#: templates/components/empty.html:4
+msgid "Materials will appear here soon."
+msgstr ""
+
+#: templates/components/facts.html:4
+msgid "Did you know?"
+msgstr ""
+
+#: templates/components/gallery.html:4
+msgid "Photo gallery"
+msgstr ""
+
+#: templates/components/gallery.html:15
+msgid "Photo"
+msgstr ""
+
+#: templates/components/gallery.html:16
+msgid "Close"
+msgstr ""
+
+#: templates/components/map.html:8
+msgid "Open"
+msgstr ""
+
+#: templates/components/map.html:13
+msgid "Landmark"
+msgstr ""
+
+#: templates/components/map.html:16
+msgid "Centre"
+msgstr ""
+
+#: templates/components/map.html:16 templates/discover/index.html:26
+#: templates/discover/region_detail.html:14
+msgid "Landmarks"
+msgstr ""
+
+#: templates/components/page_hero.html:7
+msgid "Breadcrumbs"
+msgstr ""
+
+#: templates/components/page_hero.html:9 templates/partials/header.html:4
+msgid "Home"
+msgstr ""
+
+#: templates/components/quiz.html:9 templates/learn/puzzle_list.html:31
+msgid "Show the answer"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Question"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "of"
+msgstr ""
+
+#: templates/components/quiz.html:17 templates/learn/puzzle_list.html:29
+msgid "Correct!"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Not quite"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "The right answer"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Next"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "See the result"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Your result"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Try again"
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Excellent! You know Kyrgyzstan very well."
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Good job! A little more and you will know everything."
+msgstr ""
+
+#: templates/components/quiz.html:17
+msgid "Keep exploring the site and try again!"
+msgstr ""
+
+#: templates/components/video.html:5
+msgid "Play video"
+msgstr ""
+
+#: templates/discover/index.html:10 templates/svg/map_kyrgyzstan.html:3
+msgid "Map of Kyrgyzstan"
+msgstr ""
+
+#: templates/discover/index.html:11
+msgid "Click a region on the map or choose it from the list."
+msgstr ""
+
+#: templates/discover/index.html:14
+msgid "Boundaries"
+msgstr ""
+
+#: templates/discover/index.html:27 templates/discover/place_detail.html:25
+msgid "All landmarks"
+msgstr ""
+
+#: templates/discover/index.html:38
+msgid "About nature"
+msgstr ""
+
+#: templates/discover/place_detail.html:12
+#, python-format
+msgid "More in %(region)s"
+msgstr ""
+
+#: templates/discover/place_detail.html:22
+msgid "Type"
+msgstr ""
+
+#: templates/discover/place_list.html:3 templates/discover/place_list.html:5
+msgid "Landmarks of Kyrgyzstan"
+msgstr ""
+
+#: templates/discover/place_list.html:5
+msgid "Lakes, mountains, nature reserves and ancient monuments."
+msgstr ""
+
+#: templates/discover/place_list.html:9 templates/learn/quiz_list.html:9
+#: templates/practice/activity_list.html:8
+msgid "Filter"
+msgstr ""
+
+#: templates/discover/place_list.html:11 templates/learn/quiz_list.html:11
+msgid "All"
+msgstr ""
+
+#: templates/discover/region_detail.html:11
+msgid "Mountains, lakes and nature"
+msgstr ""
+
+#: templates/discover/region_detail.html:20
+msgid "Culture and local traditions"
+msgstr ""
+
+#: templates/discover/region_detail.html:24
+msgid "Read more"
+msgstr ""
+
+#: templates/discover/region_detail.html:33
+msgid "Administrative centre"
+msgstr ""
+
+#: templates/discover/region_detail.html:34
+msgid "Area"
+msgstr ""
+
+#: templates/discover/region_detail.html:34
+msgid "km²"
+msgstr ""
+
+#: templates/discover/region_detail.html:35
+msgid "Population"
+msgstr ""
+
+#: templates/discover/region_detail.html:36
+msgid "Landmarks on the site"
+msgstr ""
+
+#: templates/discover/region_detail.html:42
+msgid "Back to the map"
+msgstr ""
+
+#: templates/home/index.html:14
+msgid "Discover <em>amazing</em> Kyrgyzstan!"
+msgstr ""
+
+#: templates/home/index.html:17
+msgid ""
+"Explore the nature, history, culture and traditions of Kyrgyzstan, take "
+"quizzes, play games and try interactive tasks."
+msgstr ""
+
+#: templates/home/index.html:21
+msgid "Start exploring"
+msgstr ""
+
+#: templates/home/index.html:26
+msgid "Kyrgyzstan in numbers"
+msgstr ""
+
+#: templates/home/index.html:27
+msgid "regions"
+msgstr ""
+
+#: templates/home/index.html:28
+msgid "cities of republican significance"
+msgstr ""
+
+#: templates/home/index.html:29
+msgid "languages"
+msgstr ""
+
+#: templates/home/index.html:44
+msgid "Issyk-Kul"
+msgstr ""
+
+#: templates/home/index.html:44
+msgid "one of the largest mountain lakes in the world"
+msgstr ""
+
+#: templates/home/index.html:48 templates/learn/index.html:11
+#: templates/learn/index.html:22 templates/learn/quiz_detail.html:5
+#: templates/learn/quiz_list.html:5
+msgid "Quizzes"
+msgstr ""
+
+#: templates/home/index.html:48
+msgid "test yourself"
+msgstr ""
+
+#: templates/home/index.html:59
+msgid "Five directions"
+msgstr ""
+
+#: templates/home/index.html:60
+msgid "Where shall we start?"
+msgstr ""
+
+#: templates/home/index.html:62
+msgid ""
+"Choose a direction: travel across the map, get to know traditions, play, "
+"cook or meet the people of modern Kyrgyzstan."
+msgstr ""
+
+#: templates/home/index.html:84
+msgid "Explore Kyrgyzstan"
+msgstr ""
+
+#: templates/home/index.html:85
+msgid "Seven regions and two special cities"
+msgstr ""
+
+#: templates/home/index.html:86
+msgid ""
+"Hover over a region to see its name, then click to learn about its "
+"mountains, lakes and sights."
+msgstr ""
+
+#: templates/home/index.html:87
+msgid "Open the map"
+msgstr ""
+
+#: templates/home/index.html:100
+msgid "Interesting"
+msgstr ""
+
+#: templates/home/index.html:101
+msgid "Interesting materials"
+msgstr ""
+
+#: templates/home/index.html:121
+msgid "Quick question"
+msgstr ""
+
+#: templates/home/index.html:122
+msgid "Test yourself!"
+msgstr ""
+
+#: templates/home/index.html:123
+msgid "Choose an answer and find out whether you are right."
+msgstr ""
+
+#: templates/home/index.html:124
+msgid "Take the whole quiz"
+msgstr ""
+
+#: templates/learn/game_detail.html:5
+msgid "Game"
+msgstr ""
+
+#: templates/learn/game_detail.html:12
+msgid "Well done!"
+msgstr ""
+
+#: templates/learn/game_detail.html:14
+msgid "This game needs JavaScript enabled."
+msgstr ""
+
+#: templates/learn/game_list.html:3 templates/learn/game_list.html:5
+#: templates/learn/index.html:15 templates/learn/index.html:31
+msgid "Mini-games"
+msgstr ""
+
+#: templates/learn/game_list.html:5
+msgid "Educational games that work right in the browser."
+msgstr ""
+
+#: templates/learn/index.html:11
+msgid "Geography, history, culture and nature"
+msgstr ""
+
+#: templates/learn/index.html:12
+msgid "Riddles"
+msgstr ""
+
+#: templates/learn/index.html:12
+msgid "Folk riddles about Kyrgyzstan"
+msgstr ""
+
+#: templates/learn/index.html:13
+msgid "Rebuses"
+msgstr ""
+
+#: templates/learn/index.html:13
+msgid "Guess the word from pictures"
+msgstr ""
+
+#: templates/learn/index.html:14
+msgid "Words, translations and pronunciation"
+msgstr ""
+
+#: templates/learn/index.html:15
+msgid "Play right in the browser"
+msgstr ""
+
+#: templates/learn/index.html:22
+msgid "All quizzes"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:5
+msgid "Look at the picture and guess the word."
+msgstr ""
+
+#: templates/learn/puzzle_list.html:5
+msgid "Read the riddle and type the answer. Stuck? Use the hint!"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:18
+msgid "Answer options"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:23 templates/learn/puzzle_list.html:24
+msgid "Your answer"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:25
+msgid "Check"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:29
+msgid "Not quite, try again"
+msgstr ""
+
+#: templates/learn/puzzle_list.html:30
+msgid "Hint"
+msgstr ""
+
+#: templates/learn/quiz_detail.html:15
+msgid "More quizzes"
+msgstr ""
+
+#: templates/learn/quiz_list.html:3
+msgid "Quizzes about Kyrgyzstan"
+msgstr ""
+
+#: templates/learn/quiz_list.html:5
+msgid ""
+"Choose a quiz, answer the questions and find out how well you know "
+"Kyrgyzstan."
+msgstr ""
+
+#: templates/learn/wordtopic_detail.html:10
+msgid "Tap a card to see the translation."
+msgstr ""
+
+#: templates/learn/wordtopic_detail.html:31
+msgid "Check yourself"
+msgstr ""
+
+#: templates/learn/wordtopic_list.html:5
+msgid ""
+"Learn your first Kyrgyz words by topic: flip the cards and listen to the "
+"pronunciation."
+msgstr ""
+
+#: templates/partials/footer.html:9
+msgid ""
+"An interactive educational website about Kyrgyzstan for children and "
+"teenagers: nature, history, culture, traditions and modern life."
+msgstr ""
+
+#: templates/partials/footer.html:13
+msgid "Sections"
+msgstr ""
+
+#: templates/partials/footer.html:19 templates/partials/lang_switcher.html:2
+msgid "Language"
+msgstr ""
+
+#: templates/partials/footer.html:25
+msgid "Map data"
+msgstr ""
+
+#: templates/partials/header.html:9
+msgid "Main sections"
+msgstr ""
+
+#: templates/partials/header.html:24
+msgid "Open menu"
+msgstr ""
+
+#: templates/partials/header.html:29
+msgid "Menu"
+msgstr ""
+
+#: templates/partials/header.html:34
+msgid "Close menu"
+msgstr ""
+
+#: templates/practice/_card.html:2 templates/practice/activity_detail.html:47
+#, python-format
+msgid "%(m)s min"
+msgstr ""
+
+#: templates/practice/activity_detail.html:11
+msgid "Safety first"
+msgstr ""
+
+#: templates/practice/activity_detail.html:16
+msgid "Sample"
+msgstr ""
+
+#: templates/practice/activity_detail.html:20
+msgid "Step by step"
+msgstr ""
+
+#: templates/practice/activity_detail.html:34
+msgid "Back"
+msgstr ""
+
+#: templates/practice/activity_detail.html:37
+msgid "Next step"
+msgstr ""
+
+#: templates/practice/activity_detail.html:48
+#, python-format
+msgid "%(n)s serving"
+msgid_plural "%(n)s servings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/practice/activity_detail.html:53
+msgid "Ingredients"
+msgstr ""
+
+#: templates/practice/activity_detail.html:53
+msgid "You will need"
+msgstr ""
+
+#: templates/practice/activity_detail.html:64
+msgid "Try more"
+msgstr ""
+
+#: templates/practice/index.html:12
+msgid "See all"
+msgstr ""

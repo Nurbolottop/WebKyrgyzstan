@@ -1,0 +1,18 @@
+{% load site_tags static %}
+{# Карточка материала. Параметры: obj, kicker, badge, art (иллюстрация-заглушка), i (порядок для анимации) #}
+<article class="card reveal" style="--i: {{ i|default:0 }}">
+  <div class="card__media">
+    {% if obj.cover %}
+      {% picture obj.cover obj.cover_alt "(min-width: 1000px) 400px, (min-width: 640px) 50vw, 100vw" %}
+    {% else %}
+      <div class="placeholder">{% with art|default:"sections/discover.svg" as art_path %}<img src="{% static 'img/'|add:art_path %}" alt="" width="120" height="90" loading="lazy">{% endwith %}</div>
+    {% endif %}
+    {% if badge %}<span class="card__badge">{{ badge }}</span>{% endif %}
+  </div>
+  <div class="card__body">
+    {% if kicker %}<span class="card__kicker">{{ kicker }}</span>{% endif %}
+    <h3 class="card__title"><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+    {% if obj.summary %}<p class="card__text">{{ obj.summary|truncatechars:140 }}</p>{% endif %}
+    {% if meta %}<div class="card__meta">{{ meta }}</div>{% endif %}
+  </div>
+</article>
