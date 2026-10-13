@@ -16,9 +16,10 @@ from pathlib import Path
 from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 
-from apps.articles.models import Category
+from apps.articles.models import Article, Category
 from apps.base.models import Section
 from apps.discover.models import Place, Region
+from apps.practice.models import Activity
 
 USER_AGENT = 'WebKyrgyzstan/1.0 (educational website for children; webkg.zeastudio.su)'
 FREE_LICENSE = re.compile(r'^(CC BY(-SA)? [0-9.]+|CC0|Public domain|PD)', re.I)
@@ -48,6 +49,17 @@ PHOTOS = [
 
     (Category, 'slug', 'crafts', 'File:Kyrgyz design felt rugs.jpg'),
     (Category, 'slug', 'yurt', 'File:Dismantling a Yurt at Lake Tuz-Kol at Kyzyl-Tuu.jpg'),
+
+    (Article, 'slug', 'why-issyk-kul-does-not-freeze', 'File:Issyk kul Lake 1.jpg'),
+    (Article, 'slug', 'how-a-yurt-is-built',
+     'File:The ethnic village, consisting of a traditional dwelling - a yurt, Kyrgyzstan, World Nomad Games 2018.jpg'),
+    (Article, 'slug', 'what-is-a-komuz', 'File:Dusepo komuz front.jpg'),
+    (Article, 'slug', 'shyrdak-felt-carpet', 'File:Shyrdak on floor.jpg'),
+    (Article, 'slug', 'ak-kalpak', 'File:Kyrgyz man with ak-kalpak hat (ак-калпак шапкa).jpg'),
+    (Article, 'slug', 'manas-epic', 'File:Philharmonic, Bishkek 01.jpg'),
+    (Article, 'slug', 'kok-boru-and-nomad-games', 'File:Kok-boru, Kyrgyzstan 2018.jpg'),
+    (Article, 'slug', 'it-in-kyrgyzstan', 'File:Bishkek City.jpg'),
+    (Activity, 'slug', 'boorsok', 'File:Boortsog 2.JPG'),
 ]
 
 

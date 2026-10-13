@@ -59,11 +59,12 @@ docker compose exec web python manage.py createsuperuser
 
 ```bash
 docker compose exec web python manage.py seed_content     # области, города, достопримечательности, категории, викторина
+docker compose exec web python manage.py seed_starter     # стартовые статьи, рецепт, мастер-класс, загадки, слова, игры
 docker compose exec web python manage.py fetch_photos     # обложки со свободной лицензией из Wikimedia Commons
 docker compose exec web python manage.py compilemessages  # переводы интерфейса
 ```
 
-Обе команды наполнения можно запускать повторно: они не дублируют записи и не перезаписывают то, что уже изменено в админке.
+Команды наполнения можно запускать повторно: они не дублируют записи и не перезаписывают то, что уже изменено в админке.
 
 ### Частые команды
 
@@ -112,6 +113,14 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 При старте контейнер применяет миграции, компилирует переводы и собирает статику (имена файлов с хешем — кешируются Nginx надолго).
 
-Конфигурация Nginx, бэкапы и порядок деплоя будут добавлены на этапе публикации.
+Сервер: `/root/WebKyrgyzstan`, порт `127.0.0.1:8092`, Nginx — `deploy/nginx-webkg.zeastudio.su.conf` (HTTPS — certbot).
+
+Обновление после push в `main`:
+
+```bash
+ssh root@45.139.77.235 'cd /root/WebKyrgyzstan && ./deploy/deploy.sh'
+```
+
+Бэкапы: база — общий серверный `/usr/local/bin/db-backup` (ежедневно, 14 дней), медиафайлы — `deploy/backup-media.sh` (cron `/etc/cron.d/webkg-media-backup`, 14 дней).
 
 
