@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 12:24+0600\n"
+"POT-Creation-Date: 2026-10-13 20:49+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,77 +422,85 @@ msgstr "республикалык маанидеги шаар"
 msgid "languages"
 msgstr "тил"
 
-#: templates/home/index.html:44 templates/svg/map_kyrgyzstan.html:29
+#: templates/home/index.html:45
+msgid "Son-Kul"
+msgstr "Соң-Көл"
+
+#: templates/home/index.html:45
+msgid "yurts on a summer pasture (jailoo)"
+msgstr "жайлоодогу боз үйлөр"
+
+#: templates/home/index.html:47 templates/svg/map_kyrgyzstan.html:29
 msgid "Issyk-Kul"
 msgstr "Ысык-Көл"
 
-#: templates/home/index.html:44
+#: templates/home/index.html:47
 msgid "one of the largest mountain lakes in the world"
 msgstr "дүйнөдөгү эң чоң тоо көлдөрүнүн бири"
 
-#: templates/home/index.html:48 templates/learn/index.html:11
+#: templates/home/index.html:52 templates/learn/index.html:11
 #: templates/learn/index.html:22 templates/learn/quiz_detail.html:5
 #: templates/learn/quiz_list.html:5
 msgid "Quizzes"
 msgstr "Викториналар"
 
-#: templates/home/index.html:48
+#: templates/home/index.html:52
 msgid "test yourself"
 msgstr "өзүңдү текшер"
 
-#: templates/home/index.html:59
+#: templates/home/index.html:63
 msgid "Five directions"
 msgstr "Беш багыт"
 
-#: templates/home/index.html:60
+#: templates/home/index.html:64
 msgid "Where shall we start?"
 msgstr "Эмнеден баштайбыз?"
 
-#: templates/home/index.html:62
+#: templates/home/index.html:66
 msgid ""
 "Choose a direction: travel across the map, get to know traditions, play, "
 "cook or meet the people of modern Kyrgyzstan."
 msgstr "Багыт танда: карта боюнча саякатта, салттар менен тааныш, ойно, тамак жаса же азыркы Кыргызстандын адамдары жөнүндө бил."
 
-#: templates/home/index.html:84
+#: templates/home/index.html:88
 msgid "Explore Kyrgyzstan"
 msgstr "Кыргызстанды изилде"
 
-#: templates/home/index.html:85
+#: templates/home/index.html:89
 msgid "Seven regions and two special cities"
 msgstr "Жети облус жана эки өзгөчө шаар"
 
-#: templates/home/index.html:86
+#: templates/home/index.html:90
 msgid ""
 "Hover over a region to see its name, then click to learn about its "
 "mountains, lakes and sights."
 msgstr "Облустун атын көрүү үчүн анын үстүнө алып бар, ал эми тоолору, көлдөрү жана кооз жерлери жөнүндө билүү үчүн бас."
 
-#: templates/home/index.html:87
+#: templates/home/index.html:91
 msgid "Open the map"
 msgstr "Картаны ачуу"
 
-#: templates/home/index.html:100
+#: templates/home/index.html:104
 msgid "Interesting"
 msgstr "Кызыктуу"
 
-#: templates/home/index.html:101
+#: templates/home/index.html:105
 msgid "Interesting materials"
 msgstr "Кызыктуу материалдар"
 
-#: templates/home/index.html:121
+#: templates/home/index.html:125
 msgid "Quick question"
 msgstr "Тез суроо"
 
-#: templates/home/index.html:122
+#: templates/home/index.html:126
 msgid "Test yourself!"
 msgstr "Өзүңдү текшер!"
 
-#: templates/home/index.html:123
+#: templates/home/index.html:127
 msgid "Choose an answer and find out whether you are right."
 msgstr "Жоопту танда жана туура экениңди бил."
 
-#: templates/home/index.html:124
+#: templates/home/index.html:128
 msgid "Take the whole quiz"
 msgstr "Бүт викторинаны өтүү"
 

@@ -41,7 +41,11 @@
       {% if site.hero_image and site.hero_image_credit %}<p class="hero__credit">{{ site.hero_image_credit }}</p>{% endif %}
       <div class="hero__float hero__float--fact" aria-hidden="true">
         <svg class="icon" style="color: var(--discover)"><use href="#i-pin"/></svg>
-        <div><strong>{% translate "Issyk-Kul" %}</strong>{% translate "one of the largest mountain lakes in the world" %}</div>
+        {% if site.hero_image %}
+          <div><strong>{% translate "Son-Kul" %}</strong>{% translate "yurts on a summer pasture (jailoo)" %}</div>
+        {% else %}
+          <div><strong>{% translate "Issyk-Kul" %}</strong>{% translate "one of the largest mountain lakes in the world" %}</div>
+        {% endif %}
       </div>
       <div class="hero__float hero__float--quiz" aria-hidden="true">
         <svg class="icon" style="color: var(--learn)"><use href="#i-question"/></svg>

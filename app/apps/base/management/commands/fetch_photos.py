@@ -17,7 +17,7 @@ from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 
 from apps.articles.models import Article, Category
-from apps.base.models import GalleryImage, Section
+from apps.base.models import GalleryImage, Section, SiteSettings
 from apps.discover.models import Place, Region
 from apps.practice.models import Activity
 
@@ -75,6 +75,14 @@ PHOTOS = [
     (Region, 'slug', 'batken', 'File:Айгул.jpg'),
 ]
 
+
+# Фото для главного экрана (вместо нарисованного пейзажа)
+HERO_PHOTO = 'File:Yurt Camp in Song kol region.jpg'
+HERO_ALT = {
+    'ky': 'Соң-Көлдүн жанындагы жайлоодо боз үйлөр',
+    'ru': 'Юрты на джайлоо в районе озера Сон-Куль',
+    'en': 'Yurts on a summer pasture near Lake Son-Kul',
+}
 
 # Дополнительные фото для фотогалерей (добавляются, только если галерея пуста)
 GALLERY = [
@@ -157,7 +165,23 @@ class Command(BaseCommand):
             obj.save()
             self.stdout.write(self.style.SUCCESS(f'  {obj}: {license_name}, {artist[:40]}'))
 
+        self.fill_hero(force)
         self.fill_galleries()
+
+    def fill_hero(self, force):
+        site = SiteSettings.load()
+        if site.hero_image and not force:
+            return
+        url, artist, license_name = commons_info(HERO_PHOTO, width=1600)
+        if not FREE_LICENSE.match(license_name):
+            self.stderr.write(f'  {HERO_PHOTO}: лицензия «{license_name}» не подходит')
+            return
+        site.hero_image.save(f'hero{extension(url)}', ContentFile(fetch(url)), save=False)
+        site.hero_image_credit = f'{artist[:120]} · {license_name} · Wikimedia Commons'
+        for lang, text in HERO_ALT.items():
+            setattr(site, f'hero_image_alt_{lang}', text)
+        site.save()
+        self.stdout.write(self.style.SUCCESS(f'  главный экран: {license_name}, {artist[:40]}'))
 
     def fill_galleries(self):
         for model, slug, titles in GALLERY:
