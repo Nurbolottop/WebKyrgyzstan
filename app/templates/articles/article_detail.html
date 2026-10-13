@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% load i18n seo_tags %}
-{% block seo %}{% seo_meta article %}{% endblock %}
+{% load i18n seo_tags site_tags %}
+{% block seo %}{% seo_meta article %}{% jsonld article "Article" %}{% endblock %}
 {% block content %}
 {% include "components/page_hero.html" with title=article.title lead=article.subtitle|default:article.summary eyebrow=article.category.title image=article.cover image_alt=article.cover_alt credit=article.cover_credit parent_url=section.get_absolute_url parent_label=section.title sub_url=article.category.get_absolute_url sub_label=article.category.title %}
 <div class="container detail">
   <div class="detail__main">
-    {% if article.body %}<div class="prose">{{ article.body|safe }}</div>{% endif %}
+    {% is_fallback article as fallback %}{% if fallback %}<p class="lang-note">{% translate "This material is not translated yet, so it is shown in Russian." %}</p>{% endif %}
+    {% if article.body %}<div class="prose"{% if fallback %} lang="ru"{% endif %}>{{ article.body|safe }}</div>{% endif %}
     {% include "components/video.html" with url=article.video_url %}
     {% if article.audio %}
       <div class="audio">

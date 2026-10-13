@@ -5,10 +5,18 @@ import { t } from '../core/i18n.js';
 export function mount(root) {
   const data = readJSON(root.dataset.payload);
   if (!data?.steps?.length) return;
+  const scene = root.querySelector('.assembly__scene');
   root.innerHTML = '';
   const built = h('ol', { class: 'steps', style: 'margin-top:24px' });
-  const stage = h('div');
-  root.append(stage, built);
+  const stage = h('div', { class: 'assembly__stage' });
+  if (scene) {
+    root.classList.add('assembly');
+    root.append(h('div', { class: 'assembly__grid' }, scene, stage));
+  } else {
+    root.append(stage);
+  }
+  root.append(built);
+  const place = (layer) => scene?.querySelector(`[data-layer="${layer}"]`)?.classList.add('is-placed');
   let index = 0;
 
   function render() {
@@ -28,9 +36,14 @@ export function mount(root) {
           return;
         }
         built.append(h('li', { class: 'step' }, h('h3', { text: step.title }), step.text ? h('p', { text: step.text }) : ''));
+        if (step.layer) place(step.layer);
         index += 1;
         if (index < data.steps.length) render();
-        else stage.replaceChildren(h('div', { class: 'feedback is-visible is-correct' }, h('strong', { text: root.dataset.success || t.done })));
+        else {
+          scene?.classList.add('is-complete');
+          stage.replaceChildren(h('div', { class: 'feedback is-visible is-correct' }, h('strong', { text: root.dataset.success || t.done })),
+            h('p', { style: 'margin-top:16px' }, h('button', { class: 'btn btn--section', type: 'button', text: t.again, onclick: () => window.location.reload() })));
+        }
       });
       list.append(h('li', {}, button));
     });

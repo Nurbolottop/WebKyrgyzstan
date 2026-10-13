@@ -11,6 +11,7 @@
     {% else %}
       <div class="quiz" data-module="{{ module }}" data-payload="game-payload" data-success="{{ game.success_text|default:_('Well done!') }}">
         {% if module == "map-guess" %}{% include "svg/map_kyrgyzstan.html" with map=None %}{% endif %}
+        {% if module == "assembly" %}{% translate "Yurt being assembled" as yurt_label %}<div class="assembly__scene">{% include "svg/yurt_scene.html" with label=yurt_label %}</div>{% endif %}
         <noscript>{% translate "This game needs JavaScript enabled." %}</noscript>
       </div>
       {{ payload|json_script:"game-payload" }}

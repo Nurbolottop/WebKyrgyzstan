@@ -48,3 +48,31 @@ class SeedStarterTests(TestCase):
         for url in urls:
             with self.subTest(url=url):
                 self.assertEqual(self.client.get(url).status_code, 200)
+
+
+class SeedMoreTests(TestCase):
+    def test_more_content_is_idempotent_and_translated(self):
+        from django.utils import translation
+
+        from apps.articles.models import Article
+        from apps.discover.models import Place, Region
+        from apps.learn.models import Puzzle, Quiz, WordTopic
+
+        for command in ('seed_content', 'seed_starter', 'seed_more', 'seed_more'):
+            call_command(command, stdout=StringIO())
+
+        self.assertEqual(Article.objects.count(), 22)
+        self.assertEqual(Quiz.objects.count(), 5)
+        self.assertEqual(WordTopic.objects.count(), 5)
+        self.assertEqual(Puzzle.objects.count(), 11)
+        for question in Question.objects.all():
+            self.assertEqual(question.answers.filter(is_correct=True).count(), 1, question)
+
+        for obj in [*Region.objects.all(), *Place.objects.all(), *Article.objects.all()]:
+            for lang in ('ky', 'ru', 'en'):
+                with self.subTest(obj=obj.slug, lang=lang):
+                    self.assertTrue(getattr(obj, f'body_{lang}'), 'текст не заполнен')
+                    self.assertTrue(getattr(obj, f'summary_{lang}'), 'описание не заполнено')
+
+        with translation.override('en'):
+            self.assertIn('Issyk-Kul', Article.objects.get(slug='why-issyk-kul-does-not-freeze').body)

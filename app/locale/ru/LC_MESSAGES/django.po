@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 10:18+0600\n"
+"POT-Creation-Date: 2026-10-13 11:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgid "Hard"
 msgstr "Сложно"
 
 #: apps/discover/models.py:13 templates/components/map.html:11
-#: templates/discover/place_detail.html:21
+#: templates/discover/place_detail.html:22
 msgid "Region"
 msgstr "Область"
 
@@ -105,7 +105,7 @@ msgstr "Город"
 msgid "Learn and play"
 msgstr "Учись и играй"
 
-#: apps/learn/models.py:12 templates/discover/region_detail.html:10
+#: apps/learn/models.py:12 templates/discover/region_detail.html:11
 msgid "Geography"
 msgstr "География"
 
@@ -167,16 +167,23 @@ msgstr "Возможно, адрес набран с ошибкой или ма�
 msgid "Go to the home page"
 msgstr "На главную"
 
-#: templates/articles/article_detail.html:12
+#: templates/articles/article_detail.html:8
+#: templates/discover/place_detail.html:8
+#: templates/discover/region_detail.html:9
+#: templates/practice/activity_detail.html:14
+msgid "This material is not translated yet, so it is shown in Russian."
+msgstr "Этот материал ещё не переведён, поэтому показан на русском."
+
+#: templates/articles/article_detail.html:13
 #: templates/learn/wordtopic_detail.html:25
 msgid "Listen"
 msgstr "Послушать"
 
-#: templates/articles/article_detail.html:22
+#: templates/articles/article_detail.html:23
 msgid "Where"
 msgstr "Где"
 
-#: templates/articles/article_detail.html:27
+#: templates/articles/article_detail.html:28
 msgid "Read also"
 msgstr "Читайте также"
 
@@ -237,7 +244,7 @@ msgid "Centre"
 msgstr "Центр"
 
 #: templates/components/map.html:16 templates/discover/index.html:26
-#: templates/discover/region_detail.html:14
+#: templates/discover/region_detail.html:15
 msgid "Landmarks"
 msgstr "Достопримечательности"
 
@@ -317,7 +324,7 @@ msgstr "Нажми на область на карте или выбери её 
 msgid "Boundaries"
 msgstr "Границы"
 
-#: templates/discover/index.html:27 templates/discover/place_detail.html:25
+#: templates/discover/index.html:27 templates/discover/place_detail.html:26
 msgid "All landmarks"
 msgstr "Все достопримечательности"
 
@@ -325,12 +332,12 @@ msgstr "Все достопримечательности"
 msgid "About nature"
 msgstr "О природе"
 
-#: templates/discover/place_detail.html:12
+#: templates/discover/place_detail.html:13
 #, python-format
 msgid "More in %(region)s"
 msgstr "Ещё: %(region)s"
 
-#: templates/discover/place_detail.html:22
+#: templates/discover/place_detail.html:23
 msgid "Type"
 msgstr "Тип"
 
@@ -351,39 +358,39 @@ msgstr "Фильтр"
 msgid "All"
 msgstr "Все"
 
-#: templates/discover/region_detail.html:11
+#: templates/discover/region_detail.html:12
 msgid "Mountains, lakes and nature"
 msgstr "Горы, озёра и природа"
 
-#: templates/discover/region_detail.html:20
+#: templates/discover/region_detail.html:21
 msgid "Culture and local traditions"
 msgstr "Культура и местные особенности"
 
-#: templates/discover/region_detail.html:24
+#: templates/discover/region_detail.html:25
 msgid "Read more"
 msgstr "Читать ещё"
 
-#: templates/discover/region_detail.html:33
+#: templates/discover/region_detail.html:34
 msgid "Administrative centre"
 msgstr "Административный центр"
 
-#: templates/discover/region_detail.html:34
+#: templates/discover/region_detail.html:35
 msgid "Area"
 msgstr "Площадь"
 
-#: templates/discover/region_detail.html:34
+#: templates/discover/region_detail.html:35
 msgid "km²"
 msgstr "км²"
 
-#: templates/discover/region_detail.html:35
+#: templates/discover/region_detail.html:36
 msgid "Population"
 msgstr "Население"
 
-#: templates/discover/region_detail.html:36
+#: templates/discover/region_detail.html:37
 msgid "Landmarks on the site"
 msgstr "Достопримечательностей на сайте"
 
-#: templates/discover/region_detail.html:42
+#: templates/discover/region_detail.html:43
 msgid "Back to the map"
 msgstr "Назад к карте"
 
@@ -395,9 +402,7 @@ msgstr "Открой <em>удивительный</em> Кыргызстан!"
 msgid ""
 "Explore the nature, history, culture and traditions of Kyrgyzstan, take "
 "quizzes, play games and try interactive tasks."
-msgstr ""
-"Изучай природу, историю, культуру и традиции Кыргызстана, проходи викторины, "
-"играй и выполняй интерактивные задания."
+msgstr "Изучай природу, историю, культуру и традиции Кыргызстана, проходи викторины, играй и выполняй интерактивные задания."
 
 #: templates/home/index.html:21
 msgid "Start exploring"
@@ -449,9 +454,7 @@ msgstr "С чего начнём?"
 msgid ""
 "Choose a direction: travel across the map, get to know traditions, play, "
 "cook or meet the people of modern Kyrgyzstan."
-msgstr ""
-"Выбери направление: путешествуй по карте, знакомься с традициями, играй, "
-"готовь или узнавай о людях современного Кыргызстана."
+msgstr "Выбери направление: путешествуй по карте, знакомься с традициями, играй, готовь или узнавай о людях современного Кыргызстана."
 
 #: templates/home/index.html:84
 msgid "Explore Kyrgyzstan"
@@ -465,9 +468,7 @@ msgstr "Семь областей и два особых города"
 msgid ""
 "Hover over a region to see its name, then click to learn about its "
 "mountains, lakes and sights."
-msgstr ""
-"Наведи на область, чтобы увидеть её название, и нажми, чтобы узнать о горах, "
-"озёрах и достопримечательностях."
+msgstr "Наведи на область, чтобы увидеть её название, и нажми, чтобы узнать о горах, озёрах и достопримечательностях."
 
 #: templates/home/index.html:87
 msgid "Open the map"
@@ -506,6 +507,10 @@ msgid "Well done!"
 msgstr "Молодец!"
 
 #: templates/learn/game_detail.html:14
+msgid "Yurt being assembled"
+msgstr "Юрта, которую ты собираешь"
+
+#: templates/learn/game_detail.html:15
 msgid "This game needs JavaScript enabled."
 msgstr "Для этой игры нужно включить JavaScript."
 
@@ -556,8 +561,7 @@ msgstr "Посмотри на картинку и угадай слово."
 
 #: templates/learn/puzzle_list.html:5
 msgid "Read the riddle and type the answer. Stuck? Use the hint!"
-msgstr ""
-"Прочитай загадку и напиши ответ. Не получается? Воспользуйся подсказкой!"
+msgstr "Прочитай загадку и напиши ответ. Не получается? Воспользуйся подсказкой!"
 
 #: templates/learn/puzzle_list.html:18
 msgid "Answer options"
@@ -591,9 +595,7 @@ msgstr "Викторины о Кыргызстане"
 msgid ""
 "Choose a quiz, answer the questions and find out how well you know "
 "Kyrgyzstan."
-msgstr ""
-"Выбери викторину, ответь на вопросы и узнай, насколько хорошо ты знаешь "
-"Кыргызстан."
+msgstr "Выбери викторину, ответь на вопросы и узнай, насколько хорошо ты знаешь Кыргызстан."
 
 #: templates/learn/wordtopic_detail.html:10
 msgid "Tap a card to see the translation."
@@ -607,17 +609,13 @@ msgstr "Проверь себя"
 msgid ""
 "Learn your first Kyrgyz words by topic: flip the cards and listen to the "
 "pronunciation."
-msgstr ""
-"Учи первые кыргызские слова по темам: переворачивай карточки и слушай "
-"произношение."
+msgstr "Учи первые кыргызские слова по темам: переворачивай карточки и слушай произношение."
 
 #: templates/partials/footer.html:9
 msgid ""
 "An interactive educational website about Kyrgyzstan for children and "
 "teenagers: nature, history, culture, traditions and modern life."
-msgstr ""
-"Интерактивный образовательный сайт о Кыргызстане для детей и подростков: "
-"природа, история, культура, традиции и современная жизнь."
+msgstr "Интерактивный образовательный сайт о Кыргызстане для детей и подростков: природа, история, культура, традиции и современная жизнь."
 
 #: templates/partials/footer.html:13
 msgid "Sections"
@@ -647,7 +645,7 @@ msgstr "Меню"
 msgid "Close menu"
 msgstr "Закрыть меню"
 
-#: templates/practice/_card.html:2 templates/practice/activity_detail.html:47
+#: templates/practice/_card.html:2 templates/practice/activity_detail.html:48
 #, python-format
 msgid "%(m)s min"
 msgstr "%(m)s мин"
@@ -656,23 +654,23 @@ msgstr "%(m)s мин"
 msgid "Safety first"
 msgstr "Сначала — безопасность"
 
-#: templates/practice/activity_detail.html:16
+#: templates/practice/activity_detail.html:17
 msgid "Sample"
 msgstr "Образец"
 
-#: templates/practice/activity_detail.html:20
+#: templates/practice/activity_detail.html:21
 msgid "Step by step"
 msgstr "Шаг за шагом"
 
-#: templates/practice/activity_detail.html:34
+#: templates/practice/activity_detail.html:35
 msgid "Back"
 msgstr "Назад"
 
-#: templates/practice/activity_detail.html:37
+#: templates/practice/activity_detail.html:38
 msgid "Next step"
 msgstr "Следующий шаг"
 
-#: templates/practice/activity_detail.html:48
+#: templates/practice/activity_detail.html:49
 #, python-format
 msgid "%(n)s serving"
 msgid_plural "%(n)s servings"
@@ -680,15 +678,15 @@ msgstr[0] "%(n)s порция"
 msgstr[1] "%(n)s порции"
 msgstr[2] "%(n)s порций"
 
-#: templates/practice/activity_detail.html:53
+#: templates/practice/activity_detail.html:54
 msgid "Ingredients"
 msgstr "Ингредиенты"
 
-#: templates/practice/activity_detail.html:53
+#: templates/practice/activity_detail.html:54
 msgid "You will need"
 msgstr "Понадобится"
 
-#: templates/practice/activity_detail.html:64
+#: templates/practice/activity_detail.html:65
 msgid "Try more"
 msgstr "Попробуй ещё"
 

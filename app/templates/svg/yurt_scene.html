@@ -1,0 +1,46 @@
+{# Сцена для игры «Собери юрту»: каждый слой появляется, когда ребёнок выбирает верную деталь. #}
+<svg class="yurt-scene" viewBox="0 0 400 300" role="img" aria-label="{{ label }}" focusable="false">
+  <defs>
+    <pattern id="yurt-lattice" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 16L16 0M-4 4L4-4M12 20l8-8M0 0l16 16M-4 12l8 8M12-4l8 8" stroke="#a8743a" stroke-width="2.2" fill="none"/>
+    </pattern>
+  </defs>
+  <ellipse cx="200" cy="262" rx="170" ry="16" fill="#7fb85a" opacity=".55"/>
+  <ellipse cx="200" cy="258" rx="128" ry="9" fill="#5f9f43" opacity=".35"/>
+
+  {# 1. Кереге — решётчатые стены #}
+  <g class="yurt-layer" data-layer="kerege">
+    <rect x="76" y="172" width="248" height="84" rx="6" fill="#f3e3c7"/>
+    <rect x="76" y="172" width="248" height="84" rx="6" fill="url(#yurt-lattice)"/>
+    <rect x="76" y="168" width="248" height="8" rx="4" fill="#a8743a"/>
+  </g>
+
+  {# 3. Түндүк — круг на вершине #}
+  <g class="yurt-layer yurt-layer--drop" data-layer="tunduk">
+    <path d="M190 70L184 172M210 70L216 172" stroke="#c99a5b" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="200" cy="62" rx="26" ry="10" fill="none" stroke="#8a5a2b" stroke-width="5"/>
+    <path d="M178 62h44M200 52v20M186 55l28 14M214 55l-28 14" stroke="#8a5a2b" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  {# 4. Уук — шесты крыши #}
+  <g class="yurt-layer" data-layer="uuk" stroke="#a8743a" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M176 66Q120 110 80 170M182 68Q140 118 112 170M188 70Q166 122 146 170M194 72Q186 124 180 170M206 72Q214 124 220 170M212 70Q234 122 254 170M218 68Q260 118 288 170M224 66Q280 110 320 170"/>
+  </g>
+
+  {# 5. Кийиз — войлочное покрытие #}
+  <g class="yurt-layer" data-layer="cover">
+    <path d="M70 176C82 112 138 70 200 66c62 4 118 46 130 110z" fill="#fbf7f0"/>
+    <path d="M92 150c30-40 66-60 108-62 42 2 78 22 108 62" fill="none" stroke="#c2502f" stroke-width="7"/>
+    <rect x="70" y="174" width="260" height="84" rx="8" fill="#fbf7f0"/>
+    <path d="M70 196h260" stroke="#c2502f" stroke-width="9"/>
+    <path d="M70 196h260" stroke="#f4b400" stroke-width="3" stroke-dasharray="10 8"/>
+    <ellipse cx="200" cy="62" rx="26" ry="10" fill="none" stroke="#8a5a2b" stroke-width="5"/>
+  </g>
+
+  {# 2. Эшик — дверь (рисуется поверх войлока) #}
+  <g class="yurt-layer" data-layer="door">
+    <path d="M178 258v-56a22 22 0 0144 0v56z" fill="#c2502f"/>
+    <path d="M200 214l9 9-9 9-9-9z" fill="#f4b400"/>
+    <path d="M178 258v-56a22 22 0 0144 0v56" fill="none" stroke="#8a3a22" stroke-width="3"/>
+  </g>
+</svg>

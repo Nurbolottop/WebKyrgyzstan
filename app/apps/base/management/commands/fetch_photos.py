@@ -17,7 +17,7 @@ from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 
 from apps.articles.models import Article, Category
-from apps.base.models import Section
+from apps.base.models import GalleryImage, Section
 from apps.discover.models import Place, Region
 from apps.practice.models import Activity
 
@@ -60,6 +60,30 @@ PHOTOS = [
     (Article, 'slug', 'kok-boru-and-nomad-games', 'File:Kok-boru, Kyrgyzstan 2018.jpg'),
     (Article, 'slug', 'it-in-kyrgyzstan', 'File:Bishkek City.jpg'),
     (Activity, 'slug', 'boorsok', 'File:Boortsog 2.JPG'),
+
+    (Region, 'slug', 'talas', 'File:Manas Ordo near Talas.jpg'),
+    (Region, 'slug', 'osh-region', 'File:Alai Valley 1.jpg'),
+    (Article, 'slug', 'snow-leopard', 'File:Snow leopard portrait.jpg'),
+    (Article, 'slug', 'why-so-many-mountains',
+     'File:Pik Pobedy and Vazha-Pshavela Peak at sunset from South Engilchek Base Camp, Central Tian Shan, Kyrgyzstan.jpg'),
+    (Article, 'slug', 'glaciers-water-tanks', 'File:Khan Tengri, Southern Inylchek Glacier, Tien Shan — Golden Hour.jpg'),
+    (Article, 'slug', 'toguz-korgool', 'File:Toguz kumalak.jpg'),
+    (Article, 'slug', 'bishkek-today', 'File:Oak Park in Bishkek.jpg'),
+]
+
+
+# Дополнительные фото для фотогалерей (добавляются, только если галерея пуста)
+GALLERY = [
+    (Place, 'issyk-kul-lake', ['File:Issyk kul Lake 3.jpg', 'File:Issyk kul Lake 1.jpg']),
+    (Place, 'son-kul-lake', ['File:Song Köl lake, Kyrgyzstan (29441553104).jpg', 'File:View to lake Son-Kul, Kyrgyzstan - panoramio.jpg']),
+    (Place, 'sulaiman-too', ['File:Cave on Sulayman Mountain 2.jpg', 'File:Building at Sulayman Mountain in Osh.jpg']),
+    (Place, 'burana-tower', ['File:Burana Tower site 05.jpg', 'File:Burana Tower site 12.jpg']),
+    (Place, 'ala-archa', ['File:Ала-Арча сверху (1).jpg', 'File:Ала-Арча сверху (3).jpg']),
+    (Place, 'sary-chelek', ['File:Sary Chelek and bird.jpg', 'File:Sary Chelek Lake 2.1.jpg']),
+    (Place, 'arslanbob', ['File:Walnut forest in Arslanbab.jpg']),
+    (Article, 'glaciers-water-tanks', ['File:Glacier valley in Khan Tengri Nature Park, Tien Shan.jpg']),
+    (Article, 'how-a-yurt-is-built', ['File:Dismantling a Yurt at Lake Tuz-Kol at Kyzyl-Tuu 2.jpg']),
+    (Article, 'kok-boru-and-nomad-games', ['File:Kok-boru Cholpon-Ata, Kyrgyzstan 2018.jpg', 'File:The ethnic village, World Nomad Games.jpg']),
 ]
 
 
@@ -122,3 +146,29 @@ class Command(BaseCommand):
                 setattr(obj, f'cover_alt_{lang}', getattr(obj, f'title_{lang}') or obj.title_ru)
             obj.save()
             self.stdout.write(self.style.SUCCESS(f'  {obj}: {license_name}, {artist[:40]}'))
+
+        self.fill_galleries()
+
+    def fill_galleries(self):
+        for model, slug, titles in GALLERY:
+            obj = model.objects.filter(slug=slug).first()
+            if obj is None or obj.gallery.exists():
+                continue
+            for order, title in enumerate(titles, start=1):
+                try:
+                    url, artist, license_name = commons_info(title, width=1600)
+                    if not FREE_LICENSE.match(license_name):
+                        self.stderr.write(f'  {title}: лицензия «{license_name}» не подходит')
+                        continue
+                    content = fetch(url)
+                    time.sleep(3)
+                except (OSError, KeyError, StopIteration) as error:
+                    self.stderr.write(f'  {title}: {error}')
+                    continue
+                photo = GalleryImage(content_object=obj, order=order,
+                                     credit=f'{artist[:120]} · {license_name} · Wikimedia Commons')
+                for lang in ('ky', 'ru', 'en'):
+                    setattr(photo, f'alt_{lang}', getattr(obj, f'title_{lang}') or obj.title_ru)
+                photo.image.save(f'{slug}-{order}{Path(url).suffix.lower() or ".jpg"}', ContentFile(content), save=False)
+                photo.save()
+                self.stdout.write(self.style.SUCCESS(f'  галерея {obj}: {license_name}, {artist[:40]}'))

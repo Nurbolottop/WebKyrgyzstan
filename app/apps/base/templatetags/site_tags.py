@@ -38,3 +38,13 @@ def image_url(image, width=1600):
 def lines(value):
     """Текст «по строке на вариант» → список непустых строк."""
     return [line.strip() for line in (value or '').splitlines() if line.strip()]
+
+
+@register.simple_tag
+def is_fallback(obj, field='body'):
+    """True, если на текущем языке поле пустое и показывается русский текст."""
+    from django.utils.translation import get_language
+    lang = get_language()
+    if lang == 'ru' or obj is None:
+        return False
+    return not getattr(obj, f'{field}_{lang}', '') and bool(getattr(obj, f'{field}_ru', ''))

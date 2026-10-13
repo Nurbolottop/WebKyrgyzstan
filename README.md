@@ -60,6 +60,7 @@ docker compose exec web python manage.py createsuperuser
 ```bash
 docker compose exec web python manage.py seed_content     # области, города, достопримечательности, категории, викторина
 docker compose exec web python manage.py seed_starter     # стартовые статьи, рецепт, мастер-класс, загадки, слова, игры
+docker compose exec web python manage.py seed_more        # переводы, описания областей и мест, новые статьи, викторины, слова
 docker compose exec web python manage.py fetch_photos     # обложки со свободной лицензией из Wikimedia Commons
 docker compose exec web python manage.py compilemessages  # переводы интерфейса
 ```

@@ -134,3 +134,17 @@
 .flashcard__face small { color: var(--muted); }
 .flashcard__face--back { background: var(--learn-soft); transform: rotateY(180deg); }
 .flashcard__audio { margin-top: 10px; }
+
+/* Игра «Собери юрту» */
+.assembly__grid { display: grid; gap: clamp(20px, 3vw, 40px); align-items: start; }
+@media (min-width: 860px) { .assembly__grid { grid-template-columns: 1fr 1fr; } }
+.assembly__scene {
+  border-radius: var(--radius-l);
+  background: linear-gradient(180deg, #d6ecf5 0%, #eef6f4 70%, var(--culture-soft) 100%);
+  padding: 12px;
+}
+.yurt-scene { width: 100%; height: auto; }
+.yurt-layer { opacity: 0; transform: translateY(-14px); transition: opacity .5s var(--ease), transform .6s var(--ease); }
+.yurt-layer--drop { transform: translateY(-40px); }
+.yurt-layer.is-placed { opacity: 1; transform: none; }
+.yurt-scene.is-complete { animation: pop .6s var(--ease); }

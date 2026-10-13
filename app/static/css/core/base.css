@@ -135,3 +135,15 @@ button { cursor: pointer; }
 }
 .prose img { border-radius: var(--radius); }
 .prose a { color: var(--accent-ink); font-weight: 500; }
+
+/* Пометка «материал пока на русском» */
+.lang-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  font-size: .9rem;
+  color: var(--muted);
+}

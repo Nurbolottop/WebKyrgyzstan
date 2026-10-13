@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 10:18+0600\n"
+"POT-Creation-Date: 2026-10-13 11:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgid "Hard"
 msgstr ""
 
 #: apps/discover/models.py:13 templates/components/map.html:11
-#: templates/discover/place_detail.html:21
+#: templates/discover/place_detail.html:22
 msgid "Region"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Learn and play"
 msgstr ""
 
-#: apps/learn/models.py:12 templates/discover/region_detail.html:10
+#: apps/learn/models.py:12 templates/discover/region_detail.html:11
 msgid "Geography"
 msgstr ""
 
@@ -165,16 +165,23 @@ msgstr ""
 msgid "Go to the home page"
 msgstr ""
 
-#: templates/articles/article_detail.html:12
+#: templates/articles/article_detail.html:8
+#: templates/discover/place_detail.html:8
+#: templates/discover/region_detail.html:9
+#: templates/practice/activity_detail.html:14
+msgid "This material is not translated yet, so it is shown in Russian."
+msgstr ""
+
+#: templates/articles/article_detail.html:13
 #: templates/learn/wordtopic_detail.html:25
 msgid "Listen"
 msgstr ""
 
-#: templates/articles/article_detail.html:22
+#: templates/articles/article_detail.html:23
 msgid "Where"
 msgstr ""
 
-#: templates/articles/article_detail.html:27
+#: templates/articles/article_detail.html:28
 msgid "Read also"
 msgstr ""
 
@@ -235,7 +242,7 @@ msgid "Centre"
 msgstr ""
 
 #: templates/components/map.html:16 templates/discover/index.html:26
-#: templates/discover/region_detail.html:14
+#: templates/discover/region_detail.html:15
 msgid "Landmarks"
 msgstr ""
 
@@ -315,7 +322,7 @@ msgstr ""
 msgid "Boundaries"
 msgstr ""
 
-#: templates/discover/index.html:27 templates/discover/place_detail.html:25
+#: templates/discover/index.html:27 templates/discover/place_detail.html:26
 msgid "All landmarks"
 msgstr ""
 
@@ -323,12 +330,12 @@ msgstr ""
 msgid "About nature"
 msgstr ""
 
-#: templates/discover/place_detail.html:12
+#: templates/discover/place_detail.html:13
 #, python-format
 msgid "More in %(region)s"
 msgstr ""
 
-#: templates/discover/place_detail.html:22
+#: templates/discover/place_detail.html:23
 msgid "Type"
 msgstr ""
 
@@ -349,39 +356,39 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/discover/region_detail.html:11
+#: templates/discover/region_detail.html:12
 msgid "Mountains, lakes and nature"
 msgstr ""
 
-#: templates/discover/region_detail.html:20
+#: templates/discover/region_detail.html:21
 msgid "Culture and local traditions"
 msgstr ""
 
-#: templates/discover/region_detail.html:24
+#: templates/discover/region_detail.html:25
 msgid "Read more"
 msgstr ""
 
-#: templates/discover/region_detail.html:33
+#: templates/discover/region_detail.html:34
 msgid "Administrative centre"
 msgstr ""
 
-#: templates/discover/region_detail.html:34
+#: templates/discover/region_detail.html:35
 msgid "Area"
 msgstr ""
 
-#: templates/discover/region_detail.html:34
+#: templates/discover/region_detail.html:35
 msgid "km²"
 msgstr ""
 
-#: templates/discover/region_detail.html:35
+#: templates/discover/region_detail.html:36
 msgid "Population"
 msgstr ""
 
-#: templates/discover/region_detail.html:36
+#: templates/discover/region_detail.html:37
 msgid "Landmarks on the site"
 msgstr ""
 
-#: templates/discover/region_detail.html:42
+#: templates/discover/region_detail.html:43
 msgid "Back to the map"
 msgstr ""
 
@@ -498,6 +505,10 @@ msgid "Well done!"
 msgstr ""
 
 #: templates/learn/game_detail.html:14
+msgid "Yurt being assembled"
+msgstr ""
+
+#: templates/learn/game_detail.html:15
 msgid "This game needs JavaScript enabled."
 msgstr ""
 
@@ -632,7 +643,7 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
-#: templates/practice/_card.html:2 templates/practice/activity_detail.html:47
+#: templates/practice/_card.html:2 templates/practice/activity_detail.html:48
 #, python-format
 msgid "%(m)s min"
 msgstr ""
@@ -641,38 +652,38 @@ msgstr ""
 msgid "Safety first"
 msgstr ""
 
-#: templates/practice/activity_detail.html:16
+#: templates/practice/activity_detail.html:17
 msgid "Sample"
 msgstr ""
 
-#: templates/practice/activity_detail.html:20
+#: templates/practice/activity_detail.html:21
 msgid "Step by step"
 msgstr ""
 
-#: templates/practice/activity_detail.html:34
+#: templates/practice/activity_detail.html:35
 msgid "Back"
 msgstr ""
 
-#: templates/practice/activity_detail.html:37
+#: templates/practice/activity_detail.html:38
 msgid "Next step"
 msgstr ""
 
-#: templates/practice/activity_detail.html:48
+#: templates/practice/activity_detail.html:49
 #, python-format
 msgid "%(n)s serving"
 msgid_plural "%(n)s servings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/practice/activity_detail.html:53
+#: templates/practice/activity_detail.html:54
 msgid "Ingredients"
 msgstr ""
 
-#: templates/practice/activity_detail.html:53
+#: templates/practice/activity_detail.html:54
 msgid "You will need"
 msgstr ""
 
-#: templates/practice/activity_detail.html:64
+#: templates/practice/activity_detail.html:65
 msgid "Try more"
 msgstr ""
 

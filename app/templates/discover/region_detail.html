@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% load i18n seo_tags %}
-{% block seo %}{% seo_meta region %}{% endblock %}
+{% load i18n seo_tags site_tags %}
+{% block seo %}{% seo_meta region %}{% jsonld region "Place" %}{% endblock %}
 {% block content %}
 {% include "components/page_hero.html" with title=region.title lead=region.summary eyebrow=region.get_kind_display image=region.cover image_alt=region.cover_alt credit=region.cover_credit parent_url=section.get_absolute_url parent_label=section.title %}
 
 <div class="container detail">
   <div class="detail__main">
-    {% if region.body %}<div class="prose">{{ region.body|safe }}</div>{% endif %}
+    {% is_fallback region as fallback %}{% if fallback %}<p class="lang-note">{% translate "This material is not translated yet, so it is shown in Russian." %}</p>{% endif %}
+    {% if region.body %}<div class="prose"{% if fallback %} lang="ru"{% endif %}>{{ region.body|safe }}</div>{% endif %}
     {% if region.geography %}<section class="block prose"><h2>{% translate "Geography" %}</h2>{{ region.geography|safe }}</section>{% endif %}
     {% if region.nature %}<section class="block prose"><h2>{% translate "Mountains, lakes and nature" %}</h2>{{ region.nature|safe }}</section>{% endif %}
 

@@ -18,7 +18,7 @@ from apps.discover.models import Region
 from apps.learn.models import Answer, Game, GameItem, Puzzle, Question, Quiz, Topic, Word, WordTopic
 from apps.practice.models import Activity, ActivityStep, Supply
 
-from apps.base.starter_content import ACTIVITIES, ARTICLES, GAMES, PUZZLES, QUIZ, WORD_TOPICS
+from apps.base.content.starter import ACTIVITIES, ARTICLES, GAMES, PUZZLES, QUIZ, WORD_TOPICS
 
 
 def tr(field, values):
